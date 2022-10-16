@@ -1,0 +1,64 @@
+.hero {
+    background: url("../../assets/img/hero-bg.png") no-repeat;
+    background-position: 40% 0px;
+    height: 100vh;
+    padding-top: 150px;
+    &__img1 {
+        width: auto;
+        position: absolute;
+        left: 20px;
+        margin-top: 30px;
+        z-index: -1;
+    }
+    &__bubbles {
+        position: absolute;
+        z-index: -1;
+    }
+    &Bubble1 {
+        left: 120px;
+        top: -20px;
+    }
+    &Bubble2 {
+        left: 450px;
+        top: 300px;
+    }
+    &Bubble3 {
+        left: 400px;
+        top: 30px;
+    }
+    @media (max-width: 1024px) {
+        &__subtitle{
+            font-size: 22px !important;
+        }
+        &__title{
+            font-size: 44px !important;
+        }
+    }
+    @media (max-width: 768px) {
+        background-position: 25% -30px;
+        &__subtitle{
+            font-size: 20px !important;
+            line-height: 22px !important;
+        }
+        &__title{
+            font-size: 36px !important;
+        }
+    }
+    @media (max-width: 576px) {
+        &__title{
+            font-size: 30px !important;
+            max-width: 450px;
+            line-height: 40px !important;
+        }
+    }
+    @media (max-width: 425px) {
+        &__title{
+            font-size: 28px !important;
+            max-width: 400px;
+        }
+        &__subtitle{
+            font-size: 18px !important;
+        }
+        background-position: 22% -30px;
+    }
+}

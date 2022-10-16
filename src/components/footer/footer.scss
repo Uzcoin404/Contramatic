@@ -1,0 +1,56 @@
+.footer {
+    &__content{
+        flex-wrap: wrap;
+        row-gap: 20px;
+    }
+    &__contact{
+        flex-wrap: wrap;
+        row-gap: 15px;
+    }
+    form {
+        display: flex;
+        button {
+            font-family: "Open Sans" !important;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 26px;
+            text-transform: capitalize;
+            color: #fff;
+            padding: 17px 43px;
+            background-color: #131515 !important;
+            box-shadow: none;
+        }
+    }
+    &__input {
+        height: 60px;
+        max-width: 380px;
+        width: 100%;
+        padding: 0 20px;
+        background-color: #fff;
+        border-radius: 4px;
+        font-family: "Open Sans";
+        &::placeholder {
+            font-size: 16px;
+        }
+        font-size: 18px;
+        border: none;
+        outline: none;
+        margin-right: 14px;
+    }
+    @media (max-width: 900px) {
+        text-align: center;
+        &__content, &__contact{
+            justify-content: center !important;
+        }
+    }
+    @media (max-width: 500px) {
+        .social__media{
+            gap: 20px;
+        }
+        .social__media img{
+            width: 40px;
+            height: 40px;
+        }
+        padding-bottom: 30px !important;
+    }
+}

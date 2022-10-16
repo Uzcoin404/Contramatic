@@ -1,0 +1,28 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+.contact{
+    padding-top: 30px;
+    input:-webkit-autofill{
+        -webkit-text-fill-color: #fff !important;
+    }
+    @media (max-width: 900px) {
+        &__input{
+            min-width: auto !important;
+        }
+        .getStarted__btn {
+            margin: 0 auto;
+        }
+    }
+    @media (max-width: 660px) {
+        .MuiFormControl-root{
+            width: 100%;
+        }
+        form{
+            width: 95%;
+        }
+    }
+}

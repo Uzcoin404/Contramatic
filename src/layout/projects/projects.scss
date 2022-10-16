@@ -1,0 +1,32 @@
+.projects{
+    margin-top: 50px;
+    margin-bottom: 80px;
+    &__content{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px 12px;
+    }
+    &__box{
+        position: relative;
+        width: 210px;
+        height: 210px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 26px;
+        border: 0.8px solid #000;
+    }
+    &__btn{
+        position: absolute !important;
+        bottom: -26px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #92CF8D !important;
+        box-shadow: 0px 11.4656px 26.4592px rgba(0, 0, 0, 0.25);
+    }
+}

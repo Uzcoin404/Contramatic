@@ -1,0 +1,28 @@
+.software{
+    position: relative;
+    .MuiContainer-root{
+        display: flex;
+        align-items: center;
+    }
+    &__bubble1, &__bubble2{
+        position: absolute;
+        z-index: -1;
+    }
+    &__bubble1{
+        top: -50px;
+        left: -400px;
+    }
+    .section__img{
+        transform: translate(0px, -30px);
+        width: 110%;
+        @media (max-width: 1240px) {
+            transform: translate(0, 0);
+            margin-right: -200px;
+            width: 100%;
+        }
+        @media (max-width: 900px) {
+            width: 90%;
+            margin-right: 0;
+        }
+    }
+}
