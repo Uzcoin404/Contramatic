@@ -26,16 +26,25 @@
         left: 400px;
         top: 30px;
     }
+    @media (max-width: 1400px) {
+        padding-top: 110px;
+        background-position: 40% -110px;
+        &__title{
+            font-size: 44px !important;
+            line-height: 52px !important;
+        }
+    }
     @media (max-width: 1024px) {
         &__subtitle{
             font-size: 22px !important;
         }
         &__title{
-            font-size: 44px !important;
+            font-size: 40px !important;
+            max-width: 550px;
         }
     }
     @media (max-width: 768px) {
-        background-position: 25% -30px;
+        background-position: 25% -100px;
         &__subtitle{
             font-size: 20px !important;
             line-height: 22px !important;
@@ -47,11 +56,11 @@
     @media (max-width: 576px) {
         &__title{
             font-size: 30px !important;
-            max-width: 450px;
             line-height: 40px !important;
         }
     }
     @media (max-width: 425px) {
+        background-position: 25% -120px;
         &__title{
             font-size: 28px !important;
             max-width: 400px;
@@ -59,6 +68,5 @@
         &__subtitle{
             font-size: 18px !important;
         }
-        background-position: 22% -30px;
     }
 }

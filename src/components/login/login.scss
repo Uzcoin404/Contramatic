@@ -1,0 +1,28 @@
+.login{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &__paper{
+        border-radius: 20px !important;
+        padding: 20px 20px 30px;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &__button{
+        margin-top: 16px !important;
+        font-family: "Open Sans" !important;
+        font-weight: 700 !important;
+    }
+    &__alert{
+        margin-top: 16px;
+        background-color: rgb(255, 215, 215) !important;
+        .MuiAlert-message{
+            font-family: "Open Sans" !important;
+        }
+    }
+}

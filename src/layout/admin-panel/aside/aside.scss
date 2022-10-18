@@ -1,0 +1,29 @@
+.aside{
+    &__list{
+        &__item{
+            border-radius: 12px !important;
+            margin: 10px 0 !important;
+            padding: 5px 10px !important;
+        }
+        .expandable__list{
+            margin-bottom: 0 !important;
+        }
+        &__link{
+            color: #111827;
+        }
+        &__item:hover, &__link[aria-current="page"] &__item{
+            color: #0E9F6E;
+            & svg{
+                fill: #0E9F6E;
+            }
+        }
+        &__text span{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 150%;
+            transition: all .2s;
+        }
+        margin: 0 12px !important;
+        padding: 0 !important;
+    }
+}

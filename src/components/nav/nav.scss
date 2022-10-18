@@ -11,7 +11,8 @@
     line-height: 26px;
     text-transform: capitalize;
     color: #131515;
-    &[aria-current="page"] {
+    transition: .2s;
+    &:hover {
         color: #92cf8d;
     }
 }
@@ -22,6 +23,12 @@
         rgba(93, 93, 93, 0.9) 55.73%,
         rgba(93, 93, 93, 0) 100%
     );
+    padding-top: 35px;
+    padding-bottom: 40px;
+    @media (max-width: 1400px) {
+        padding-top: 25px;
+        padding-bottom: 30px;
+    }
 }
 .language_flag {
     width: 26px;
@@ -45,6 +52,7 @@
 }
 .language__name {
     margin-left: 10px;
+    font-family: "Open Sans";
     text-transform: capitalize;
 }
 @media (max-width: 1100px) {

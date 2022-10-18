@@ -1,14 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Container, Box, Typography } from "@mui/material";
+import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../get-started/getStartedBtn";
-// import hero1 from "../../assets/img/hero1.png";
-// import heroBubble1 from "../../assets/img/hero-bubble1.png";
-// import heroBubble2 from "../../assets/img/hero-bubble2.png";
-// import heroAnimate from "../../assets/img/hero-animate.png";
 
 import "./hero.scss";
 
 export default function Hero() {
+
+    const {data} = useContext(DataContext);
     return (
         <Box className="hero">
             <Container sx={{ position: "relative" }}>
@@ -21,7 +20,7 @@ export default function Hero() {
                         fontFamily="Open Sans"
                         sx={{ mb: 1.25, opacity: 0.5 }}
                     >
-                        Wir machen das, was wir am besten können:
+                        {data?.hero_subtitle}
                     </Typography>
                     <Typography
                         variant="h1"
@@ -37,14 +36,10 @@ export default function Hero() {
                             textTransform: "capitalize",
                         }}
                     >
-                        ENTWICKLUNG VON SPORTWETTEN SOFTWARE
+                        {data?.hero_title}
                     </Typography>
                     <GetStartedBtn withArrow={true} />
-                    {/* <img src={hero1} alt="" className="hero__img1" /> */}
                 </Box>
-                {/* <img src={heroBubble1} alt="" className="hero__bubbles heroBubble1"/>
-                <img src={heroBubble2} alt="" className="hero__bubbles heroBubble2"/>
-                <img src={heroAnimate} alt="" className="hero__bubbles heroBubble3"/> */}
             </Container>
         </Box>
     );

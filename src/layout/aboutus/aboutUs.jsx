@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
+import { DataContext } from "../../context/dataContext";
 import { title, subtitle, text } from "../styles";
 import sectionImg from "../../assets/img/aboutus.png";
 import aboutusBubble1 from "../../assets/img/aboutus-bubble1.png";
@@ -7,6 +8,7 @@ import aboutusBubble2 from "../../assets/img/aboutus-bubble2.png";
 import "./aboutus.scss";
 
 export default function AboutUs() {
+    const { data } = useContext(DataContext);
     return (
         <Box component="section" className="aboutus" id="aboutus">
             <Box className="section__item" sx={{ mr: 2.5 }}>
@@ -18,10 +20,14 @@ export default function AboutUs() {
                     className="section__subtitle"
                     style={subtitle}
                 >
-                    ABOUT US
+                    {data?.nav_link1}
                 </Typography>
-                <Typography variant="h2" style={title} className="section__title">
-                    Who we Are
+                <Typography
+                    variant="h2"
+                    style={title}
+                    className="section__title"
+                >
+                    {data?.aboutus_title}
                 </Typography>
                 <Typography
                     variant="body1"
@@ -29,18 +35,7 @@ export default function AboutUs() {
                     style={text}
                     sx={{ maxWidth: 643 }}
                 >
-                    Im Jahre 2008 fingen wir mit 3 Personen an. Inzwischen
-                    besteht unser Team aus mehr als 40 Personen aus
-                    verschiedensten Nationen. Durch die ständige
-                    Weiterentwicklung unserer Software sind wir immer auf dem
-                    neuesten Stand. Die Erfahrungen, welche wir in vielen
-                    verschiedenen Märkten sammeln, fließen ebenso in die
-                    Weiterentwicklung ein. Wir haben nur Erfolg, wenn unsere
-                    Partner auch erfolgreich sind. Deshalb ist es unser größtes
-                    Anliegen, unserer Partner ein perfektes Sportwetten-Produkt
-                    anzubieten. Unser Ziel ist nicht nur unsere Position als
-                    erfolgreiches Unternehmen zu halten, sondern weltweit die
-                    Nummer Eins zu werden.
+                    {data?.aboutus_text}
                 </Typography>
                 <img src={aboutusBubble1} alt="" className="aboutus__bubble1" />
                 <img src={aboutusBubble2} alt="" className="aboutus__bubble2" />

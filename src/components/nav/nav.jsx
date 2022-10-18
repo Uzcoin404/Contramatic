@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink as Link } from "react-router-dom";
 import {
     AppBar,
@@ -16,11 +16,14 @@ import {
     ListItemButton,
     ListItemText,
 } from "@mui/material";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import { LangContext } from "../../context/langContext";
+import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../get-started/getStartedBtn";
-import pages from "../../pages";
 import "./nav.scss";
 
 import GBflag from "../../assets/img/flags/gb.svg";
@@ -32,17 +35,35 @@ import FRflag from "../../assets/img/flags/fr.svg";
 import ESflag from "../../assets/img/flags/es.svg";
 
 export default function Nav(props) {
-    const [language, setlanguage] = React.useState("gb");
+    const { lang, setLang } = useContext(LangContext);
+    const { data } = useContext(DataContext);
+    const [languages, setlanguages] = useState(null);
+    const [mobileOpen, setMobileOpen] = useState(false);
+
+    useEffect(() => {
+        async function getLanguages() {
+            const querySnapshot = await getDocs(collection(db, "languages"));
+            querySnapshot.forEach((doc) => {
+                setlanguages(doc.data().langs);
+            });
+        }
+        getLanguages();
+    }, []);
 
     const languageChange = (event) => {
-        setlanguage(event.target.value);
+        setLang(event.target.value);
     };
-    const { window } = props;
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
+
+    const pages = [
+        { to: "/", title: data?.nav_link1 },
+        { to: "#aboutus", title: data?.nav_link2 },
+        { to: "#software", title: data?.nav_link3 }, 
+        { to: "#white-label", title: data?.nav_link4 },
+        { to: "#contact", title: data?.nav_link5 },
+    ];
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -67,8 +88,8 @@ export default function Nav(props) {
             <Divider />
             <List>
                 {pages.map((item, i) => (
-                    <Link to={item.to}>
-                        <ListItem key={i} disablePadding>
+                    <Link to={item.to} key={i}>
+                        <ListItem disablePadding>
                             <ListItemButton sx={{ textAlign: "center" }}>
                                 <ListItemText
                                     sx={{
@@ -85,6 +106,7 @@ export default function Nav(props) {
         </Box>
     );
 
+    const { window } = props;
     const container =
         window !== undefined ? () => window().document.body : undefined;
     return (
@@ -93,7 +115,7 @@ export default function Nav(props) {
                 position="fixed"
                 className="appbar"
                 component="nav"
-                sx={{ boxShadow: "none", pt: 4.5, pb: 5 }}
+                sx={{ boxShadow: "none", }}
             >
                 <Container>
                     <Toolbar>
@@ -131,7 +153,8 @@ export default function Nav(props) {
                                 </Typography>
                             </Link>
                         </Box>
-                        <Box className="nav__list"
+                        <Box
+                            className="nav__list"
                             sx={{
                                 flexGrow: 1,
                                 display: { xs: "none", md: "flex" },
@@ -153,77 +176,21 @@ export default function Nav(props) {
                                 <Select
                                     id="language-switcher"
                                     className="language__select"
-                                    value={language}
+                                    value={lang}
                                     onChange={languageChange}
                                 >
-                                    <MenuItem value={"gb"}>
-                                        <img
-                                            src={GBflag}
-                                            alt=""
-                                            className="language_flag"
-                                        />
-                                        <p className="language__name">
-                                            English
-                                        </p>
-                                    </MenuItem>
-                                    <MenuItem value={"tr"}>
-                                        <img
-                                            src={TRflag}
-                                            alt=""
-                                            className="language_flag"
-                                        />
-                                        <p className="language__name">Türkçe</p>
-                                    </MenuItem>
-                                    <MenuItem value={"ru"}>
-                                        <img
-                                            src={RUflag}
-                                            alt=""
-                                            className="language_flag"
-                                        />
-                                        <p className="language__name">
-                                            Русский
-                                        </p>
-                                    </MenuItem>
-                                    <MenuItem value={"de"}>
-                                        <img
-                                            src={DEflag}
-                                            alt=""
-                                            className="language_flag"
-                                        />
-                                        <p className="language__name">
-                                            Deutsche
-                                        </p>
-                                    </MenuItem>
-                                    <MenuItem value={"it"}>
-                                        <img
-                                            src={ITflag}
-                                            alt=""
-                                            className="language_flag"
-                                        />
-                                        <p className="language__name">
-                                            Italiano
-                                        </p>
-                                    </MenuItem>
-                                    <MenuItem value={"fr"}>
-                                        <img
-                                            src={FRflag}
-                                            alt=""
-                                            className="language_flag"
-                                        />
-                                        <p className="language__name">
-                                            Français
-                                        </p>
-                                    </MenuItem>
-                                    <MenuItem value={"es"}>
-                                        <img
-                                            src={ESflag}
-                                            alt=""
-                                            className="language_flag"
-                                        />
-                                        <p className="language__name">
-                                            Español
-                                        </p>
-                                    </MenuItem>
+                                    {languages?.map((item, i) => (
+                                        <MenuItem value={item.sh_name} key={i}>
+                                            <img
+                                                src={GBflag}
+                                                alt=""
+                                                className="language_flag"
+                                            />
+                                            <p className="language__name">
+                                                {item.name}
+                                            </p>
+                                        </MenuItem>
+                                    ))}
                                 </Select>
                             </FormControl>
                             <GetStartedBtn />
