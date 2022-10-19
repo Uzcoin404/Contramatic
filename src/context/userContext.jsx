@@ -1,20 +1,21 @@
 import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../components/firebase/firebase";
+import { auth } from "../components/firebase";
 
-const UserContext = createContext();
+export const UserContext = createContext();
 
-function Provider({ children }) {
+function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         onAuthStateChanged(auth, (newUser) => {
-            setUser({});
+            setUser(newUser);
             setLoading(false);
         });
     }, []);
 
+    console.log(user);
     if (loading) {
         return ""
     }
@@ -22,4 +23,4 @@ function Provider({ children }) {
         <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
     );
 }
-export { UserContext, Provider };
+export default AuthProvider;

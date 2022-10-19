@@ -11,7 +11,7 @@ import Footer from "../components/footer/footer";
 
 export default function Main() {
     return (
-        <>
+        <div className="UI">
             <Nav />
             <Hero />
             <AboutUs />
@@ -21,6 +21,6 @@ export default function Main() {
             <Projects />
             <Contact />
             <Footer />
-        </>
+        </div>
     );
 }

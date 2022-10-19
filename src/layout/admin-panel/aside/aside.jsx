@@ -19,7 +19,7 @@ import "./aside.scss";
 
 function Aside() {
     const drawerWidth = "250px";
-    const open = true
+    const open = false;
 
     const drawer = (toolbar) => (
         <>
@@ -129,7 +129,7 @@ function Aside() {
     };
 
     return (
-        <Box component="nav" sx={{ flexShrink: { sm: 0 }, width: 250 }} className="aside">
+        <Box component="nav" sx={{ flexShrink: { sm: 0 } }} className="aside">
             <Drawer
                 variant="permanent"
                 sx={{

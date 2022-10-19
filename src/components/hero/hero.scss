@@ -1,6 +1,6 @@
 .hero {
-    background: url("../../assets/img/hero-bg.png") no-repeat;
-    background-position: 40% 0px;
+    background: url("../../assets/img/main-image.gif") no-repeat;
+    background-position: 60% 330px;
     height: 100vh;
     padding-top: 150px;
     &__img1 {
@@ -26,44 +26,45 @@
         left: 400px;
         top: 30px;
     }
-    @media (max-width: 1400px) {
-        padding-top: 110px;
-        background-position: 40% -110px;
-        &__title{
-            font-size: 44px !important;
-            line-height: 52px !important;
-        }
-    }
-    @media (max-width: 1024px) {
-        &__subtitle{
-            font-size: 22px !important;
-        }
+    @media (max-width: 1440px) {
+        padding-top: 100px;
+        background-position: 50% 200px;
+        background-size: 1000px;
         &__title{
             font-size: 40px !important;
+            line-height: 52px !important;
             max-width: 550px;
         }
     }
+    @media (max-width: 1024px) {
+        background-position: 5% 220px;
+        background-size: 1200px;
+        &__subtitle{
+            font-size: 22px !important;
+        }
+    }
     @media (max-width: 768px) {
-        background-position: 25% -100px;
         &__subtitle{
             font-size: 20px !important;
             line-height: 22px !important;
         }
         &__title{
             font-size: 36px !important;
+            max-width: 500px;
         }
     }
     @media (max-width: 576px) {
         &__title{
             font-size: 30px !important;
             line-height: 40px !important;
+            max-width: 400px;
         }
     }
     @media (max-width: 425px) {
-        background-position: 25% -120px;
+        background-position: 5% 400px;
+        background-size: 600px;
         &__title{
             font-size: 28px !important;
-            max-width: 400px;
         }
         &__subtitle{
             font-size: 18px !important;

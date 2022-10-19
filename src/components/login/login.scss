@@ -1,27 +1,43 @@
-.login{
+.login {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    &__paper{
+    position: relative;
+    &::before {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        width: 100%;
+        height: 2136px;
+        background: linear-gradient(
+            356.34deg,
+            rgba(146, 207, 141, 0.84) 41.28%,
+            rgba(0, 157, 82, 0.73) 68.91%,
+            rgba(0, 157, 82, 0) 93.54%
+        );
+        backdrop-filter: blur(2px);
+        z-index: -1;
+    }
+    &__paper {
         border-radius: 20px !important;
         padding: 20px 20px 30px;
     }
-    form{
+    form {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
-    &__button{
+    &__button {
         margin-top: 16px !important;
         font-family: "Open Sans" !important;
         font-weight: 700 !important;
     }
-    &__alert{
+    &__alert {
         margin-top: 16px;
         background-color: rgb(255, 215, 215) !important;
-        .MuiAlert-message{
+        .MuiAlert-message {
             font-family: "Open Sans" !important;
         }
     }

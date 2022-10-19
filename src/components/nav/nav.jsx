@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import Parser from "html-react-parser";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -60,7 +61,7 @@ export default function Nav(props) {
     const pages = [
         { to: "/", title: data?.nav_link1 },
         { to: "#aboutus", title: data?.nav_link2 },
-        { to: "#software", title: data?.nav_link3 }, 
+        { to: "#software", title: data?.nav_link3 },
         { to: "#white-label", title: data?.nav_link4 },
         { to: "#contact", title: data?.nav_link5 },
     ];
@@ -115,7 +116,7 @@ export default function Nav(props) {
                 position="fixed"
                 className="appbar"
                 component="nav"
-                sx={{ boxShadow: "none", }}
+                sx={{ boxShadow: "none" }}
             >
                 <Container>
                     <Toolbar>
@@ -166,9 +167,10 @@ export default function Nav(props) {
                                     key={i}
                                     to={page.to}
                                     className="nav__link"
-                                >
-                                    {page.title}
-                                </Link>
+                                    dangerouslySetInnerHTML={{
+                                        __html: page.title,
+                                    }}
+                                />
                             ))}
                         </Box>
                         <Box>
@@ -182,7 +184,7 @@ export default function Nav(props) {
                                     {languages?.map((item, i) => (
                                         <MenuItem value={item.sh_name} key={i}>
                                             <img
-                                                src={GBflag}
+                                                src={item?.icon}
                                                 alt=""
                                                 className="language_flag"
                                             />

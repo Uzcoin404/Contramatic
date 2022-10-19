@@ -18,10 +18,10 @@ export default function Hero() {
                         fontSize={24}
                         fontWeight={800}
                         fontFamily="Open Sans"
+                        onLoad={() => console.log('fsd')}
                         sx={{ mb: 1.25, opacity: 0.5 }}
-                    >
-                        {data?.hero_subtitle}
-                    </Typography>
+                        dangerouslySetInnerHTML={{__html: data.hero_subtitle}}
+                    />
                     <Typography
                         variant="h1"
                         fontSize={51}
@@ -35,9 +35,8 @@ export default function Hero() {
                             width: 620,
                             textTransform: "capitalize",
                         }}
-                    >
-                        {data?.hero_title}
-                    </Typography>
+                        dangerouslySetInnerHTML={{__html: data.hero_title}}
+                    />
                     <GetStartedBtn withArrow={true} />
                 </Box>
             </Container>

@@ -8,14 +8,16 @@ const DataContext = createContext();
 function Provider({ children }) {
     const [data, setData] = useState(null);
     const { lang } = useContext(LangContext);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function getData() {
-            const docRef = doc(db, "data", lang);
+            const docRef = doc(db, "posts", lang);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
                 setData(docSnap.data());
+                setLoading(false);
             } else {
                 console.log("No such document!");
             }
@@ -24,6 +26,9 @@ function Provider({ children }) {
     }, [lang]);
 
     console.log(data);
+    if (loading) {
+        return "";
+    }
     return (
         <DataContext.Provider value={{ data }}>{children}</DataContext.Provider>
     );
