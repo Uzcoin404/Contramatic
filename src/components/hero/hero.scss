@@ -3,28 +3,20 @@
     background-position: 60% 330px;
     height: 100vh;
     padding-top: 150px;
-    &__img1 {
-        width: auto;
-        position: absolute;
-        left: 20px;
-        margin-top: 30px;
-        z-index: -1;
+    &__content{
+        z-index: 1;
     }
-    &__bubbles {
+    &__bubble1, &__bubble2 {
         position: absolute;
         z-index: -1;
     }
-    &Bubble1 {
-        left: 120px;
-        top: -20px;
+    &__bubble1 {
+        left: 10%;
+        top: -70px;
     }
-    &Bubble2 {
-        left: 450px;
-        top: 300px;
-    }
-    &Bubble3 {
-        left: 400px;
-        top: 30px;
+    &__bubble2 {
+        left: 30%;
+        top: 50px;
     }
     @media (max-width: 1440px) {
         padding-top: 100px;
@@ -34,6 +26,14 @@
             font-size: 40px !important;
             line-height: 52px !important;
             max-width: 550px;
+        }
+        &__bubble1 {
+            left: 5%;
+            top: -90px;
+        }
+        &__bubble2 {
+            left: 25%;
+            top: -50px;
         }
     }
     @media (max-width: 1024px) {
@@ -52,12 +52,19 @@
             font-size: 36px !important;
             max-width: 500px;
         }
+        &__bubble1 {
+            left: 0%;
+            top: -90px;
+        }
     }
     @media (max-width: 576px) {
         &__title{
             font-size: 30px !important;
             line-height: 40px !important;
             max-width: 400px;
+        }
+        &__bubble2{
+            display: none;
         }
     }
     @media (max-width: 425px) {
@@ -68,6 +75,9 @@
         }
         &__subtitle{
             font-size: 18px !important;
+        }
+        &__bubble1 {
+            left: -10%;
         }
     }
 }

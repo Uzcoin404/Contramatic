@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { NavLink as Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 import {
     AppBar,
     Box,
@@ -17,8 +17,7 @@ import {
     ListItemText,
 } from "@mui/material";
 import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
-import Parser from "html-react-parser";
+import { doc, getDoc } from "firebase/firestore";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -26,14 +25,6 @@ import { LangContext } from "../../context/langContext";
 import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../get-started/getStartedBtn";
 import "./nav.scss";
-
-import GBflag from "../../assets/img/flags/gb.svg";
-import TRflag from "../../assets/img/flags/tr.svg";
-import RUflag from "../../assets/img/flags/ru.svg";
-import DEflag from "../../assets/img/flags/de.svg";
-import ITflag from "../../assets/img/flags/it.svg";
-import FRflag from "../../assets/img/flags/fr.svg";
-import ESflag from "../../assets/img/flags/es.svg";
 
 export default function Nav(props) {
     const { lang, setLang } = useContext(LangContext);
@@ -43,10 +34,14 @@ export default function Nav(props) {
 
     useEffect(() => {
         async function getLanguages() {
-            const querySnapshot = await getDocs(collection(db, "languages"));
-            querySnapshot.forEach((doc) => {
-                setlanguages(doc.data().langs);
-            });
+            const docRef = doc(db, "languages", "HLxO6mAhdDMjduI800aL");
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setlanguages(docSnap.data().langs);
+            } else {
+                console.log("No such document!");
+            }
         }
         getLanguages();
     }, []);
@@ -59,7 +54,7 @@ export default function Nav(props) {
     };
 
     const pages = [
-        { to: "/", title: data?.nav_link1 },
+        { to: "#home", title: data?.nav_link1 },
         { to: "#aboutus", title: data?.nav_link2 },
         { to: "#software", title: data?.nav_link3 },
         { to: "#white-label", title: data?.nav_link4 },
@@ -89,15 +84,18 @@ export default function Nav(props) {
             <Divider />
             <List>
                 {pages.map((item, i) => (
-                    <Link to={item.to} key={i}>
+                    <Link smooth to={item.to} key={i}>
                         <ListItem disablePadding>
                             <ListItemButton sx={{ textAlign: "center" }}>
-                                <ListItemText
+                                <Typography
                                     sx={{
                                         color: "#fff",
                                         textTransform: "capitalize",
+                                        margin: '0 auto'
                                     }}
-                                    primary={item.title}
+                                    dangerouslySetInnerHTML={{
+                                        __html: item.title,
+                                    }}
                                 />
                             </ListItemButton>
                         </ListItem>
@@ -120,7 +118,13 @@ export default function Nav(props) {
             >
                 <Container>
                     <Toolbar>
-                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                columnGap: "30px",
+                            }}
+                        >
                             <IconButton
                                 size="large"
                                 edge="start"
@@ -134,7 +138,7 @@ export default function Nav(props) {
                             >
                                 <MenuIcon fontSize="large" />
                             </IconButton>
-                            <Link to="/" style={{ marginRight: 30 }}>
+                            <Link to="/">
                                 <Typography
                                     variant="h4"
                                     fontSize={26}
@@ -158,12 +162,14 @@ export default function Nav(props) {
                             className="nav__list"
                             sx={{
                                 flexGrow: 1,
+                                ml: 5,
                                 display: { xs: "none", md: "flex" },
                                 columnGap: "24px",
                             }}
                         >
                             {pages.map((page, i) => (
                                 <Link
+                                    smooth
                                     key={i}
                                     to={page.to}
                                     className="nav__link"

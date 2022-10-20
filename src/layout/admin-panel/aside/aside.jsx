@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NavLink as Link } from "react-router-dom";
-import MenuList from "../menuList";
 
 import {
     Drawer,
@@ -13,19 +12,71 @@ import {
     Toolbar,
     Collapse,
 } from "@mui/material";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import {
+    ExpandLess,
+    ExpandMore,
+    Home,
+    Language,
+    Apps,
+} from "@mui/icons-material";
 
 import "./aside.scss";
 
-function Aside() {
+function Aside({ languages }) {
+    const [langs, setLangs] = useState(null);
     const drawerWidth = "250px";
     const open = false;
 
+    const MenuList = [
+        {
+            icon: <Apps />,
+            title: "Home",
+            to: "/admin",
+        },
+        {
+            icon: <Language />,
+            title: "Languages",
+            items: [
+                {
+                    title: "English",
+                    to: "en",
+                },
+                {
+                    title: "Turkish",
+                    to: "tr",
+                },
+                {
+                    title: "Russian",
+                    to: "ru",
+                },
+                {
+                    title: "German",
+                    to: "de",
+                },
+                {
+                    title: "French",
+                    to: "fr",
+                },
+                {
+                    title: "Italian",
+                    to: "it",
+                },
+                {
+                    title: "Spain",
+                    to: "es",
+                },
+            ],
+        },
+        {
+            icon: <Home />,
+            title: "Website",
+            to: "/",
+        },
+    ];
+
     const drawer = (toolbar) => (
         <>
-            <Toolbar>
-                {!toolbar ? null : "Contramatic"}
-            </Toolbar>
+            <Toolbar>{!toolbar ? null : "Contramatic"}</Toolbar>
             <Menu items={MenuList} />
         </>
     );
@@ -117,10 +168,7 @@ function Aside() {
     const MenuItem = ({ config, divider }) => {
         return (
             <Link to={config.to} className="aside__list__link">
-                <ListItem
-                    button
-                    className="aside__list__item"
-                >
+                <ListItem button className="aside__list__item">
                     <ListItemBody config={config} />
                 </ListItem>
                 {!divider ? "" : <Divider />}

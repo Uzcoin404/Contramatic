@@ -26,7 +26,7 @@ export default function Posts() {
 
     useEffect(() => {
         async function getData() {
-            const docRef = doc(db, "data", langId);
+            const docRef = doc(db, "data", 'en');
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
@@ -54,7 +54,7 @@ export default function Posts() {
     if (posts) {
         return (
             <Paper sx={{ width: "100%", overflow: "hidden" }}>
-                <TableContainer sx={{ maxHeight: 700 }}>
+                <TableContainer>
                     <Table stickyHeader size="small">
                         <TableHead>
                             <TableRow>

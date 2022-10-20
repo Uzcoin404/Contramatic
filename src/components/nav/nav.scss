@@ -2,6 +2,7 @@
     background-color: #5e5e5e;
     overflow-x: hidden;
     position: relative;
+    z-index: 1;
     &::before {
         position: absolute;
         content: "";
@@ -25,6 +26,10 @@
         rgba(93, 93, 93, 0.9) 55.73%,
         rgba(93, 93, 93, 0) 100%
     );
+    .MuiToolbar-root {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 .nav__link {
     font-weight: 400;
@@ -90,8 +95,6 @@
             column-gap: 16px;
         }
         .MuiToolbar-root {
-            padding-left: 0px;
-            padding-right: 0px;
             justify-content: space-between;
         }
     }

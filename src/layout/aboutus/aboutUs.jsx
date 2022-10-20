@@ -19,24 +19,21 @@ export default function AboutUs() {
                     variant="subtitle1"
                     className="section__subtitle"
                     style={subtitle}
-                >
-                    {data?.nav_link1}
-                </Typography>
+                    dangerouslySetInnerHTML={{ __html: data.nav_link1 }}
+                ></Typography>
                 <Typography
                     variant="h2"
                     style={title}
                     className="section__title"
-                >
-                    {data?.aboutus_title}
-                </Typography>
+                    dangerouslySetInnerHTML={{ __html: data.aboutus_title }}
+                ></Typography>
                 <Typography
                     variant="body1"
                     className="section__text"
                     style={text}
                     sx={{ maxWidth: 643 }}
-                >
-                    {data?.aboutus_text}
-                </Typography>
+                    dangerouslySetInnerHTML={{ __html: data.aboutus_text }}
+                ></Typography>
                 <img src={aboutusBubble1} alt="" className="aboutus__bubble1" />
                 <img src={aboutusBubble2} alt="" className="aboutus__bubble2" />
             </Box>

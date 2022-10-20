@@ -1,17 +1,31 @@
-import React, { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
-import { UserContext } from "../../context/userContext";
+import React, { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../components/firebase";
 import Nav from "./nav/nav";
 import Aside from "./aside/aside";
 import Main from "./main/main";
 
 export default function AdminPanel() {
-    const { user } = useContext(UserContext);
+    const [languages, setlanguages] = useState(null);
+    useEffect(() => {
+        async function getLanguages() {
+            const docRef = doc(db, "languages", "HLxO6mAhdDMjduI800aL");
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setlanguages(docSnap.data().langs);
+            } else {
+                console.log("No such document!");
+            }
+        }
+        getLanguages();
+    }, []);
+    console.log(languages);
     return (
         <div className="adminPanel">
-			<Nav />
-			<Aside />
-            <Main />
+            <Nav />
+            <Aside languages={languages} />
+            <Main languages={languages} />
         </div>
     );
 }

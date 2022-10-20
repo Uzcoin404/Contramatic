@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../components/firebase";
+import { UserContext } from "../../../context/userContext";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,6 +17,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
 function Nav() {
+    const {user} = useContext(UserContext);
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -35,6 +38,7 @@ function Nav() {
     };
 
     async function logOut() {
+        handleCloseUserMenu();
         await signOut(auth);
     }
 
@@ -90,8 +94,8 @@ function Nav() {
                                 sx={{ p: 0 }}
                             >
                                 <Avatar
-                                    alt="Remy Sharp"
-                                    src="/static/images/avatar/2.jpg"
+                                    alt={user.email}
+                                    src=""
                                 />
                             </IconButton>
                         </Tooltip>
@@ -111,6 +115,11 @@ function Nav() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
+                            <MenuItem onClick={handleCloseUserMenu}>
+                                <Typography textAlign="center">
+                                    {user.email}
+                                </Typography>
+                            </MenuItem>
                             <MenuItem onClick={logOut}>
                                 <Typography textAlign="center">
                                     Log Out
