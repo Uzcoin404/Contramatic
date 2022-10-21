@@ -78,9 +78,8 @@ export default function Nav(props) {
                         fontFamily: "Arvo",
                     },
                 }}
-            >
-                contra<span>matic</span>
-            </Typography>
+                dangerouslySetInnerHTML={{ __html: data.logo_text }}
+            />
             <Divider />
             <List>
                 {pages.map((item, i) => (
@@ -153,9 +152,8 @@ export default function Nav(props) {
                                             fontFamily: "Arvo",
                                         },
                                     }}
-                                >
-                                    contra<span>matic</span>
-                                </Typography>
+                                    dangerouslySetInnerHTML={{ __html: data.logo_text }}
+                                />
                             </Link>
                         </Box>
                         <Box

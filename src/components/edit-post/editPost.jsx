@@ -10,7 +10,6 @@ export default function EditPost() {
     const location = useLocation();
     const history = useNavigate();
     const [post, setPost] = useState(location.state);
-    console.log(post);
 
     const editorRef = useRef(null);
     const log = () => {

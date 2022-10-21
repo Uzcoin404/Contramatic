@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     Box,
     Container,
@@ -6,11 +6,13 @@ import {
     FormControl,
     Typography,
 } from "@mui/material";
+import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../../components/get-started/getStartedBtn";
 import { title } from "../styles";
 import "./contact.scss";
 
 export default function Contact() {
+    const {data} = useContext(DataContext);
     const inputStyle = {
         minWidth: "385px",
         mb: 3.5,
@@ -42,9 +44,8 @@ export default function Contact() {
                     className="section__title"
                     style={title}
                     sx={{ mb: "50px !important", textAlign: "center" }}
-                >
-                    Get in Touch
-                </Typography>
+                    dangerouslySetInnerHTML={{ __html: data.contact_title }}
+                />
                 <Box
                     component="form"
                     action="#"
@@ -88,7 +89,7 @@ export default function Contact() {
                         <TextField
                             label="Your message"
                             variant="outlined"
-                            className="contact__input"
+                            className="contact__input contact__textfield"
                             size="large"
                             sx={{
                                 minWidth: "100%",

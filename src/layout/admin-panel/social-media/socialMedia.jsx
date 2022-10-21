@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, useNavigate, NavLink as Link } from "react-router-dom";
-import { DataContext } from "../../context/dataContext";
-import { db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { DataContext } from "../../../context/dataContext";
+import { db } from "../../../components/firebase";
+import { collection, getDocs } from "firebase/firestore";
 import {
     Box,
     Table,
@@ -17,30 +17,23 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-export default function Posts() {
-    const [posts, setPosts] = useState(null);
-    const { langId } = useParams();
-    const navigate = useNavigate();
+export default function SocialMedia() {
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(25);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [socialMedia, setSocialMedia] = useState(null);
 
     useEffect(() => {
         async function getData() {
-            const docRef = doc(db, "data", langId);
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                setPosts(Object.values(docSnap.data()));
-            } else {
-                console.log("No such document!");
-            }
+            const querySnapshot = await getDocs(collection(db, "social-media"));
+            const data = [];
+            querySnapshot.forEach((doc) => {
+                // setSocialMedia(doc.data());
+                data.push(doc.data());
+            });
+            setSocialMedia(data);
         }
         getData();
-    }, [langId]);
-
-    if (posts) {
-        console.log(posts);
-    }
+    }, []);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -51,9 +44,9 @@ export default function Posts() {
         setPage(0);
     };
 
-    if (posts) {
+    if (socialMedia) {
         return (
-            <Paper sx={{ width: "100%", overflow: "hidden", pt: 1 }}>
+            <Paper sx={{ width: "100%", overflow: "hidden" }}>
                 <TableContainer>
                     <Table stickyHeader size="small">
                         <TableHead>
@@ -70,7 +63,7 @@ export default function Posts() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {posts
+                            {socialMedia
                                 .slice(
                                     page * rowsPerPage,
                                     page * rowsPerPage + rowsPerPage
@@ -81,26 +74,27 @@ export default function Posts() {
                                             hover
                                             role="checkbox"
                                             tabIndex={-1}
-                                            key={row.keyword}
+                                            key={i}
                                         >
                                             <TableCell align="left">
                                                 {row.id}
                                             </TableCell>
-                                            <TableCell
-                                                align="center"
-                                                dangerouslySetInnerHTML={{
-                                                    __html: row.title,
-                                                }}
-                                            />
                                             <TableCell align="center">
-                                                {row.keyword}
+                                                {row.title}
                                             </TableCell>
                                             <TableCell align="center">
-                                                {row.position}
+                                                <img
+                                                    src={row.icon}
+                                                    alt=""
+                                                    style={{
+                                                        width: 45,
+                                                        height: 45,
+                                                    }}
+                                                />
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Link
-                                                    to={row.id.toString()}
+                                                    to={row?.id?.toString()}
                                                     state={row}
                                                 >
                                                     <IconButton>
@@ -117,7 +111,7 @@ export default function Posts() {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 50]}
                     component="div"
-                    count={posts.length}
+                    count={socialMedia.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
@@ -131,16 +125,10 @@ const columns = [
     { id: "id", label: "#" },
     { id: "title", label: "Title", minWidth: 200 },
     {
-        id: "keyword",
-        label: "Keyword",
+        id: "icon",
+        label: "Icon",
         minWidth: 100,
-        align: "right",
-    },
-    {
-        id: "position",
-        label: "Position",
-        minWidth: 100,
-        align: "right",
+        align: "center",
     },
     {
         id: "tools",

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
+import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../../components/get-started/getStartedBtn";
 import { title, subtitle, text } from "../styles";
 
@@ -9,6 +10,7 @@ import whiteLabelBubble2 from "../../assets/img/white-label-bubble2.png";
 import "./whiteLabel.scss";
 
 export default function WhiteLabel() {
+    const { data } = useContext(DataContext);
     return (
         <Box component="section" className="white__label" id="white-label">
             <Box className="section__item" sx={{ mr: 2.5 }}>
@@ -19,11 +21,16 @@ export default function WhiteLabel() {
                     variant="subtitle1"
                     className="section__subtitle"
                     style={subtitle}
+                    dangerouslySetInnerHTML={{ __html: data.white_label_top_text }}
                 >
-                    advatnages
                 </Typography>
-                <Typography variant="h2" className="section__title" style={title} sx={{ mb: '0 !important' }}>
-                    WHITE LABEL
+                <Typography
+                    variant="h2"
+                    className="section__title"
+                    style={title}
+                    sx={{ mb: "0 !important" }}
+                    dangerouslySetInnerHTML={{ __html: data.white_label_title }}
+                >
                 </Typography>
                 <Typography
                     variant="subtitle1"
@@ -35,22 +42,17 @@ export default function WhiteLabel() {
                     fontFamily="Alfa Slab One"
                     color="#131515"
                     sx={{ mb: 2.5 }}
+                    dangerouslySetInnerHTML={{ __html: data.white_label_subtitle }}
                 >
-                    ab €0,00 in 24 STD.
                 </Typography>
                 <Typography
                     variant="body1"
                     className="section__text"
                     style={text}
                     sx={{ mt: 0.5, mb: 4, maxWidth: 538 }}
-                >
-                    Wir bieten Ihnen ein komplett einsatzbereites WHITE LABEL
-                    an. Bereits ab 0,00€ können Sie innerhalb von 24 Stunden Ihr
-                    White Label mit Ihrer eigenen Domain besitzen. Die
-                    Abwicklung ist sehr unkompliziert. Ohne Ausweis, ohne Firmen
-                    Unterlagen.
-                </Typography>
-                <GetStartedBtn withArrow={true}/>
+                    dangerouslySetInnerHTML={{ __html: data.white_label_text }}
+                />
+                <GetStartedBtn withArrow={true} />
                 <img
                     src={whiteLabelBubble1}
                     alt=""

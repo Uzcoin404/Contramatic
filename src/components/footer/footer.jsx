@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { DataContext } from "../../context/dataContext";
+import parse from "html-react-parser";
 
 import emailIcon from "../../assets/img/icons/email.svg";
 import phoneIcon from "../../assets/img/icons/phone.svg";
-import facebook from "../../assets/img/icons/social-media/facebook.svg";
-import twitter from "../../assets/img/icons/social-media/twitter.svg";
-import linkedin from "../../assets/img/icons/social-media/linkedin.svg";
-import youtube from "../../assets/img/icons/social-media/youtube.svg";
-import github from "../../assets/img/icons/social-media/github.svg";
-import email from "../../assets/img/icons/social-media/email.svg";
 import "./footer.scss";
 
 export default function Footer() {
+    const {data} = useContext(DataContext);
+    const [socialMedia, setSocialMedia] = useState(null);
+    useEffect(() => {
+        async function getData() {
+            const querySnapshot = await getDocs(collection(db, "social-media"));
+            const data = [];
+            querySnapshot.forEach((doc) => {
+                data.push(doc.data());
+            });
+            setSocialMedia(data);
+        }
+        getData();
+    }, []);
     return (
         <Box className="footer" component="footer" sx={{ mt: 4.5, pb: 7.5 }}>
             <Container>
@@ -23,13 +34,12 @@ export default function Footer() {
                     color="#fff"
                     sx={{
                         "& span": {
-                            color: "#131515",
+                            color: "#131515 !important",
                             fontFamily: "Arvo",
                         },
                     }}
-                >
-                    contra<span>matic</span>
-                </Typography>
+                    dangerouslySetInnerHTML={{ __html: data.logo_text }}
+                />
                 <Box
                     className="footer__content"
                     sx={{
@@ -45,11 +55,11 @@ export default function Footer() {
                             flexWrap: "wrap",
                             textAlign: "center",
                             justifyContent: "center",
-                            gap: '8px 32px',
+                            gap: "8px 32px",
                         }}
                     >
                         <a
-                            href="mailto:abc@example.com"
+                            href={"mailto:" + parse(data.email).props.children}
                             style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -70,12 +80,11 @@ export default function Footer() {
                                     ml: 1.2,
                                     fontSize: { xs: "16px", sm: "20px" },
                                 }}
-                            >
-                                info@contramatic.com
-                            </Typography>
+                                dangerouslySetInnerHTML={{ __html: data.email }}
+                            />
                         </a>
                         <a
-                            href="tel:+4623445667889"
+                            href={"tel" + parse(data.phone_number).props.children }
                             style={{ display: "flex", alignItems: "center" }}
                         >
                             <img
@@ -94,9 +103,8 @@ export default function Footer() {
                                     ml: 1.2,
                                     fontSize: { xs: "16px", sm: "20px" },
                                 }}
-                            >
-                                +46 234 456 678 89
-                            </Typography>
+                                dangerouslySetInnerHTML={{ __html: data.phone_number }}
+                            />
                         </a>
                     </Box>
                     <Box
@@ -108,24 +116,16 @@ export default function Footer() {
                             justifyContent: "center",
                         }}
                     >
-                        <a href="#" target="_blank">
-                            <img src={facebook} alt="" />
-                        </a>
-                        <a href="#" target="_blank">
-                            <img src={twitter} alt="" />
-                        </a>
-                        <a href="#" target="_blank">
-                            <img src={linkedin} alt="" />
-                        </a>
-                        <a href="#" target="_blank">
-                            <img src={youtube} alt="" />
-                        </a>
-                        <a href="#" target="_blank">
-                            <img src={github} alt="" />
-                        </a>
-                        <a href="#" target="_blank">
-                            <img src={email} alt="" />
-                        </a>
+                        {socialMedia?.map((item, i) => (
+                            <a
+                                href={item.link}
+                                target="_blank"
+                                title={item.title}
+                                key={i}
+                            >
+                                <img src={item.icon} alt="" />
+                            </a>
+                        ))}
                     </Box>
                 </Box>
                 <Box

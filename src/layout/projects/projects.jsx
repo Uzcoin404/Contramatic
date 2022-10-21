@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Box, Typography, IconButton, Container } from "@mui/material";
+import { DataContext } from "../../context/dataContext";
 import { title } from "../styles";
 
 import rightArrow from "../../assets/img/icons/right-arrow.svg";
@@ -11,7 +12,8 @@ import projects5 from "../../assets/img/bettendo.png";
 import "./projects.scss";
 
 export default function Projects() {
-    const data = [
+    const {data} = useContext(DataContext);
+    const projects = [
         { logo: projects1, title: "Golden90", link: "#" },
         { logo: projects2, title: "Contra90", link: "#" },
         { logo: projects3, title: "LuckyBet", link: "#" },
@@ -26,11 +28,10 @@ export default function Projects() {
                     className="section__title"
                     style={title}
                     sx={{ mb: '50px !important', textAlign: "center" }}
-                >
-                    Our Projects
-                </Typography>
+                    dangerouslySetInnerHTML={{ __html: data.projects_title }}
+                />
                 <Box className="projects__content">
-                    {data.map((box, i) => (
+                    {projects.map((box, i) => (
                         <Box className="projects__box" key={i}>
                             <img src={box.logo} alt="" />
                             <Typography

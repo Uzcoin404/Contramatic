@@ -4,13 +4,21 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
-.contact{
+.contact {
     padding-top: 30px;
-    input:-webkit-autofill{
+    input:-webkit-autofill {
         -webkit-text-fill-color: #fff !important;
     }
+    &__textfield {
+        input {
+            height: 100%;
+            padding-bottom: 150px;
+            padding-left: 0;
+            line-height: 1em;
+        }
+    }
     @media (max-width: 900px) {
-        &__input{
+        &__input {
             min-width: auto !important;
         }
         .getStarted__btn {
@@ -18,10 +26,10 @@ input:-webkit-autofill:active {
         }
     }
     @media (max-width: 660px) {
-        .MuiFormControl-root{
+        .MuiFormControl-root {
             width: 100%;
         }
-        form{
+        form {
             width: 95%;
         }
     }

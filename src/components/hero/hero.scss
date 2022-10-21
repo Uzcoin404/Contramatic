@@ -1,7 +1,7 @@
 .hero {
     background: url("../../assets/img/main-image.gif") no-repeat;
     background-position: 60% 330px;
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 150px;
     &__content{
         z-index: 1;
@@ -37,7 +37,7 @@
         }
     }
     @media (max-width: 1024px) {
-        background-position: 5% 220px;
+        background-position: 5% 180px;
         background-size: 1200px;
         &__subtitle{
             font-size: 22px !important;
