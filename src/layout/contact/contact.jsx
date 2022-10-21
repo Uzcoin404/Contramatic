@@ -1,10 +1,13 @@
-import React, {useContext} from "react";
+import React, { useContext, useState } from "react";
 import {
     Box,
     Container,
     TextField,
     FormControl,
     Typography,
+    Modal,
+    Alert,
+    AlertTitle,
 } from "@mui/material";
 import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../../components/get-started/getStartedBtn";
@@ -12,7 +15,13 @@ import { title } from "../styles";
 import "./contact.scss";
 
 export default function Contact() {
-    const {data} = useContext(DataContext);
+    const { data } = useContext(DataContext);
+    const [email, setEmail] = useState("");
+    const [theme, setTheme] = useState("");
+    const [message, setMessage] = useState("");
+    const [open, setOpen] = useState(false);
+    const [error, setError] = useState("");
+    const handleClose = () => setOpen(false);
     const inputStyle = {
         minWidth: "385px",
         mb: 3.5,
@@ -25,7 +34,7 @@ export default function Contact() {
         "& label.Mui-focused": {
             color: "#fff",
             pl: 0,
-            pt: 0
+            pt: 0,
         },
         "& label": {
             pl: 1,
@@ -35,6 +44,37 @@ export default function Contact() {
         "& .MuiOutlinedInput-root.Mui-focused fieldset": {
             borderColor: "#fff",
         },
+    };
+
+    function handleClick(e) {
+        e.preventDefault();
+        if ((email != "" && theme != "", message != "")) {
+            if (validateEmail(email)) {
+                window.location.reload(false);
+            } else {
+                setError("Email is incorrect");
+                setOpen(true);
+            }
+        } else {
+            setError("Please fill out all fields");
+            setOpen(true);
+        }
+    }
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
+    const style = {
+        position: "absolute",
+        top: "5%",
+        left: "5%",
+        maxWidth: 400,
+        width: "100%",
+        boxShadow: 10,
     };
     return (
         <Box className="contact" id="contact">
@@ -69,8 +109,9 @@ export default function Contact() {
                                 className="contact__input"
                                 size="large"
                                 sx={inputStyle}
-                                required
                                 type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </FormControl>
                     </Box>
@@ -82,7 +123,8 @@ export default function Contact() {
                             size="large"
                             sx={inputStyle}
                             style={{ minWidth: "100%" }}
-                            required
+                            value={theme}
+                            onChange={(e) => setTheme(e.target.value)}
                         />
                     </FormControl>
                     <FormControl fullWidth>
@@ -91,6 +133,8 @@ export default function Contact() {
                             variant="outlined"
                             className="contact__input contact__textfield"
                             size="large"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
                             sx={{
                                 minWidth: "100%",
                                 mb: 4,
@@ -106,18 +150,30 @@ export default function Contact() {
                                     pl: 1,
                                     fontSize: 18,
                                 },
-                                "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                                    borderColor: "#fff",
-                                },
+                                "& .MuiOutlinedInput-root.Mui-focused fieldset":
+                                    {
+                                        borderColor: "#fff",
+                                    },
                             }}
-                            required
                         />
                     </FormControl>
                     <Box sx={{ display: "flex", justifyContent: "end" }}>
-                        <GetStartedBtn withArrow={true} isSubmit={true} />
+                        <GetStartedBtn
+                            withArrow={true}
+                            isSubmit={true}
+                            onClick={handleClick}
+                        />
                     </Box>
                 </Box>
             </Container>
+            <Modal keepMounted open={open} onClose={handleClose}>
+                <Box sx={style}>
+                    <Alert severity="error">
+                        <AlertTitle>Error</AlertTitle>
+                        {error}
+                    </Alert>
+                </Box>
+            </Modal>
         </Box>
     );
 }

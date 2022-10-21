@@ -31,9 +31,8 @@ export default function Labels({ data }) {
                     fontFamily="Open Sans"
                     color="#131515"
                     className="label__text"
-                >
-                    {parse(label?.description)}
-                </Typography>
+                    dangerouslySetInnerHTML={{ __html: label?.description }}
+                />
             </Box>
             <img src={label.img} alt="" className="label__img" />
         </Box>

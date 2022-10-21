@@ -12,9 +12,7 @@ input:-webkit-autofill:active {
     &__textfield {
         input {
             height: 100%;
-            padding-bottom: 150px;
-            padding-left: 0;
-            line-height: 1em;
+            
         }
     }
     @media (max-width: 900px) {
