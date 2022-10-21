@@ -13,7 +13,11 @@ function GetStartedBtn({ withArrow, isSubmit }) {
             className="getStarted__btn"
             type={isSubmit ? "submit" : "button"}
         >
-            <span dangerouslySetInnerHTML={{ __html: data.get_started }} />
+            <span
+                dangerouslySetInnerHTML={{
+                    __html: !isSubmit ? data.get_started : "Send",
+                }}
+            />
             {withArrow ? (
                 <img src={rightArrow} alt="" className="right__arrow" />
             ) : (

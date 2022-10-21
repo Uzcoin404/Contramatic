@@ -1,7 +1,8 @@
 .hero {
     background: url("../../assets/img/main-image.gif") no-repeat;
     background-position: 60% 330px;
-    min-height: 100vh;
+    height: 100vh;
+    max-height: 900px;
     padding-top: 150px;
     &__content{
         z-index: 1;

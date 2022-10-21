@@ -16,6 +16,7 @@ export default function EditSocial() {
     const history = useNavigate();
     const [social, setSocial] = useState(location.state);
     const [iconUrl, setIcon] = useState(social.icon);
+    const [socialLink, setSocialLink] = useState(social.link);
     console.log(social);
 
     useEffect(() => {
@@ -39,6 +40,7 @@ export default function EditSocial() {
 
         await updateDoc(newData, {
             icon: iconUrl,
+            link: socialLink
         });
         history(-1);
     }
@@ -50,9 +52,16 @@ export default function EditSocial() {
             <TextField
                 label="Enter a icon url"
                 variant="outlined"
-                sx={{ width: 400, mt: 2 }}
+                sx={{ maxWidth: 400, width: '100%', mt: 2 }}
                 value={iconUrl}
                 onChange={(e) => setIcon(e.target.value)}
+            />
+            <TextField
+                label="Link"
+                variant="outlined"
+                sx={{ maxWidth: 400, width: '100%', mt: 2 }}
+                value={socialLink}
+                onChange={(e) => setSocialLink(e.target.value)}
             />
             <Button
                 variant="contained"

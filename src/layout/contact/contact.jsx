@@ -114,7 +114,7 @@ export default function Contact() {
                         />
                     </FormControl>
                     <Box sx={{ display: "flex", justifyContent: "end" }}>
-                        <GetStartedBtn withArrow={true} />
+                        <GetStartedBtn withArrow={true} isSubmit={true} />
                     </Box>
                 </Box>
             </Container>
