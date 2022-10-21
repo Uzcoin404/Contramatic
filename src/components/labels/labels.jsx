@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography, Chip } from "@mui/material";
+import parse from "html-react-parser";
 import "./labels.scss";
 
 export default function Labels({ data }) {
@@ -14,13 +15,12 @@ export default function Labels({ data }) {
                     color="#131515"
                     sx={{ mb: 4 }}
                     className="label__title"
-                >
-                    {label.title}
-                </Typography>
+                    dangerouslySetInnerHTML={{ __html: label.title }}
+                />
                 <Box className="chips" sx={{ mb: 3 }}>
                     {label.hasOwnProperty("chips") &&
                         label.chips.map((chip, i) => (
-                            <Chip label={chip} className="chip" key={i} />
+                            <Chip label={parse(chip)} className="chip" key={i} />
                         ))}
                 </Box>
                 <Typography
@@ -32,7 +32,7 @@ export default function Labels({ data }) {
                     color="#131515"
                     className="label__text"
                 >
-                    {label.description}
+                    {parse(label?.description)}
                 </Typography>
             </Box>
             <img src={label.img} alt="" className="label__img" />

@@ -71,14 +71,10 @@ function Aside({ languages }) {
             title: "Social Media",
             to: "/admin/social-media",
         },
-        // {
-        //     title: "White Labels",
-        //     to: "/admin/labels",
-        // },
-        // {
-        //     title: "projects",
-        //     to: "/admin/projects",
-        // },
+        {
+            title: "projects",
+            to: "/admin/projects",
+        },
         {
             icon: <Home />,
             title: "Website",

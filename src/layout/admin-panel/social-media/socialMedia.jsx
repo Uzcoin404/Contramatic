@@ -27,7 +27,6 @@ export default function SocialMedia() {
             const querySnapshot = await getDocs(collection(db, "social-media"));
             const data = [];
             querySnapshot.forEach((doc) => {
-                // setSocialMedia(doc.data());
                 data.push(doc.data());
             });
             setSocialMedia(data);

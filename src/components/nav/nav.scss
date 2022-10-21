@@ -92,7 +92,7 @@
             font-size: 16px;
         }
         &__list{
-            column-gap: 16px;
+            column-gap: 16px !important;
         }
         .MuiToolbar-root {
             justify-content: space-between;

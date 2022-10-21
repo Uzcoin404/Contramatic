@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, NavLink as Link } from "react-router-dom";
 import { DataContext } from "../../../context/dataContext";
 import { db } from "../../../components/firebase";
@@ -17,20 +17,19 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-export default function WhiteLabels() {
+export default function Projects() {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [socialMedia, setSocialMedia] = useState(null);
+    const [projects, setProjects] = useState(null);
 
     useEffect(() => {
         async function getData() {
-            const querySnapshot = await getDocs(collection(db, "social-media"));
+            const querySnapshot = await getDocs(collection(db, "projects"));
             const data = [];
             querySnapshot.forEach((doc) => {
-                // setSocialMedia(doc.data());
                 data.push(doc.data());
             });
-            setSocialMedia(data);
+            setProjects(data);
         }
         getData();
     }, []);
@@ -44,7 +43,7 @@ export default function WhiteLabels() {
         setPage(0);
     };
 
-    if (socialMedia) {
+    if (projects) {
         return (
             <Paper sx={{ width: "100%", overflow: "hidden" }}>
                 <TableContainer>
@@ -63,7 +62,7 @@ export default function WhiteLabels() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {socialMedia
+                            {projects
                                 .slice(
                                     page * rowsPerPage,
                                     page * rowsPerPage + rowsPerPage
@@ -87,8 +86,8 @@ export default function WhiteLabels() {
                                                     src={row.icon}
                                                     alt=""
                                                     style={{
-                                                        width: 45,
-                                                        height: 45,
+                                                        width: 180,
+                                                        height: 40,
                                                     }}
                                                 />
                                             </TableCell>
@@ -111,7 +110,7 @@ export default function WhiteLabels() {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 50]}
                     component="div"
-                    count={socialMedia.length}
+                    count={projects.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
@@ -121,3 +120,19 @@ export default function WhiteLabels() {
         );
     }
 }
+const columns = [
+    { id: "id", label: "#" },
+    { id: "title", label: "Title", minWidth: 200 },
+    {
+        id: "icon",
+        label: "Icon",
+        minWidth: 100,
+        align: "center",
+    },
+    {
+        id: "tools",
+        label: "Tools",
+        minWidth: 50,
+        align: "right",
+    },
+];

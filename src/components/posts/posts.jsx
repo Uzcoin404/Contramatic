@@ -22,7 +22,7 @@ export default function Posts() {
     const { langId } = useParams();
     const navigate = useNavigate();
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(25);
+    const [rowsPerPage, setRowsPerPage] = useState(50);
 
     useEffect(() => {
         async function getData() {
@@ -89,14 +89,14 @@ export default function Posts() {
                                             <TableCell
                                                 align="center"
                                                 dangerouslySetInnerHTML={{
-                                                    __html: row.title,
+                                                    __html: row?.title,
                                                 }}
                                             />
                                             <TableCell align="center">
                                                 {row.keyword}
                                             </TableCell>
                                             <TableCell align="center">
-                                                {row.position}
+                                                {row?.position}
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Link
@@ -115,7 +115,7 @@ export default function Posts() {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[10, 25, 50]}
+                    rowsPerPageOptions={[10, 25, 50, 100]}
                     component="div"
                     count={posts.length}
                     rowsPerPage={rowsPerPage}
