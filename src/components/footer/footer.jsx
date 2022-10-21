@@ -10,7 +10,7 @@ import phoneIcon from "../../assets/img/icons/phone.svg";
 import "./footer.scss";
 
 export default function Footer() {
-    const {data} = useContext(DataContext);
+    const { data } = useContext(DataContext);
     const [socialMedia, setSocialMedia] = useState(null);
     useEffect(() => {
         async function getData() {
@@ -84,7 +84,13 @@ export default function Footer() {
                             />
                         </a>
                         <a
-                            href={"tel" + parse(data.phone_number).props.children }
+                            href={
+                                "tel:" +
+                                parse(data.phone_number).props.children.replace(
+                                    /\s/g,
+                                    ""
+                                )
+                            }
                             style={{ display: "flex", alignItems: "center" }}
                         >
                             <img
@@ -103,7 +109,9 @@ export default function Footer() {
                                     ml: 1.2,
                                     fontSize: { xs: "16px", sm: "20px" },
                                 }}
-                                dangerouslySetInnerHTML={{ __html: data.phone_number }}
+                                dangerouslySetInnerHTML={{
+                                    __html: data.phone_number,
+                                }}
                             />
                         </a>
                     </Box>

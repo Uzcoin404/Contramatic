@@ -37,6 +37,10 @@
         outline: none;
         margin-right: 14px;
     }
+    .social__media img{
+        width: 45px;
+        height: 45px;
+    }
     @media (max-width: 900px) {
         text-align: center;
         &__content, &__contact{

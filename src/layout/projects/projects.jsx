@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Box, Typography, IconButton, Container } from "@mui/material";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../components/firebase";
 import { DataContext } from "../../context/dataContext";
 import { title } from "../styles";
+import "@splidejs/react-splide/css";
 
 import rightArrow from "../../assets/img/icons/right-arrow.svg";
 import "./projects.scss";
@@ -34,29 +36,47 @@ export default function Projects() {
                     dangerouslySetInnerHTML={{ __html: data.projects_title }}
                 />
                 <Box className="projects__content">
-                    {projects?.map((box, i) => (
-                        <Box className="projects__box" key={i}>
-                            <img src={box.icon} alt="" />
-                            <Typography
-                                variant="body2"
-                                fontSize={15}
-                                fontWeight={700}
-                                lineHeight="25px"
-                                color="#fff"
-                                textAlign="center"
-                                textTransform="capitalize"
-                                href={box.link}
-                            >
-                                {box.title}
-                            </Typography>
-                            <IconButton
-                                className="projects__btn"
-                                href={box.link}
-                            >
-                                <img src={rightArrow} alt="" />
-                            </IconButton>
-                        </Box>
-                    ))}
+                    <Splide
+                        aria-label="My Favorite Images"
+                        options={{
+                            type: "loop",
+                            width: "100%",
+                            gap: "1rem",
+                            perPage: 5,
+                            breakpoints: {
+                                1200: { perPage: 4 },
+                                950: { perPage: 3 },
+                                700: { perPage: 2 },
+                                500: { perPage: 1 },
+                            },
+                        }}
+                    >
+                        {projects?.map((box, i) => (
+                            <SplideSlide>
+                                <Box className="projects__box" key={i}>
+                                    <img src={box.icon} alt="" />
+                                    <Typography
+                                        variant="body2"
+                                        fontSize={15}
+                                        fontWeight={700}
+                                        lineHeight="25px"
+                                        color="#fff"
+                                        textAlign="center"
+                                        textTransform="capitalize"
+                                        href={box.link}
+                                    >
+                                        {box.title}
+                                    </Typography>
+                                    <IconButton
+                                        className="projects__btn"
+                                        href={box.link}
+                                    >
+                                        <img src={rightArrow} alt="" />
+                                    </IconButton>
+                                </Box>
+                            </SplideSlide>
+                        ))}
+                    </Splide>
                 </Box>
             </Container>
         </Box>
