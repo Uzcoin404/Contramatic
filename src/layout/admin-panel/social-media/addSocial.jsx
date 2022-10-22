@@ -34,17 +34,14 @@ export default function AddSocial() {
 
     async function setSocial() {
         if (title != "" && link != "" && icon != null) {
-            setLoading({ ...loading, submit: true });
-
             await setDoc(doc(db, "social-media", title), {
-                id: location.state,
+                id: location.state + 1,
                 title: title,
                 icon: icon,
                 link: link,
             });
-            setLoading({ ...loading, submit: false });
             setError(null);
-            // history(-1);
+            history(-1);
         } else {
             setError("Please fill out all fields");
         }
@@ -52,6 +49,11 @@ export default function AddSocial() {
 
     return (
         <Box sx={{ ml: 2, display: "flex", flexDirection: "column" }}>
+            {icon ? (
+                <Box sx={{ pt: 2 }}>
+                    <img src={icon} alt="" style={{ width: 50, height: 50 }} />
+                </Box>
+            ) : null}
             <TextField
                 label="Title"
                 variant="outlined"

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams, useNavigate, NavLink as Link } from "react-router-dom";
 import { DataContext } from "../../../context/dataContext";
 import { db } from "../../../components/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import {
     Box,
     Table,
@@ -15,25 +15,36 @@ import {
     Paper,
     IconButton,
     Button,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Alert,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function SocialMedia() {
     const [page, setPage] = useState(0);
+    const [selectedItem, setSelectedItem] = useState(null);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [socialMedia, setSocialMedia] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [updateData, setUpdateData] = useState(false);
 
     useEffect(() => {
         async function getData() {
             const querySnapshot = await getDocs(collection(db, "social-media"));
             const data = [];
             querySnapshot.forEach((doc) => {
-                data.push(doc.data());
+                let newData = doc.data();
+                newData['doc_id'] = doc.id;
+                data.push(newData);
             });
             setSocialMedia(data);
         }
         getData();
-    }, []);
+    }, [updateData]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -43,6 +54,14 @@ export default function SocialMedia() {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+    const handleClose = () => {
+        setOpen(false);
+    };
+    async function deleteSocial() {
+        await deleteDoc(doc(db, "social-media", selectedItem));
+        setUpdateData(true);
+        handleClose();
+    }
 
     if (socialMedia) {
         return (
@@ -97,10 +116,22 @@ export default function SocialMedia() {
                                                     to={row?.id?.toString()}
                                                     state={row}
                                                 >
-                                                    <IconButton>
+                                                    <IconButton color="primary">
                                                         <EditIcon />
                                                     </IconButton>
                                                 </Link>
+                                                <IconButton
+                                                    color="error"
+                                                    sx={{ ml: 1 }}
+                                                    onClick={() => {
+                                                        setOpen(true);
+                                                        setSelectedItem(
+                                                            row?.doc_id
+                                                        );
+                                                    }}
+                                                >
+                                                    <DeleteIcon />
+                                                </IconButton>
                                             </TableCell>
                                         </TableRow>
                                     );
@@ -113,7 +144,7 @@ export default function SocialMedia() {
                         display: "flex",
                         justifyContent: "space-between",
                         flexWrap: "wrap",
-                        alignItems: 'center'
+                        alignItems: "center",
                     }}
                 >
                     <Link to="add" state={socialMedia.length}>
@@ -127,9 +158,27 @@ export default function SocialMedia() {
                         page={page}
                         onPageChange={handleChangePage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
-                        // width="400px"
                     />
                 </Box>
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>Delete Social media</DialogTitle>
+                    <DialogContent>
+                        <Alert
+                            severity="error"
+                            sx={{ mt: 2, width: "100%", maxWidth: 500 }}
+                        >
+                            This will permanently delete this Item
+                        </Alert>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} sx={{ mr: 1 }}>
+                            Cancel
+                        </Button>
+                        <Button color="error" onClick={deleteSocial} autoFocus>
+                            Delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Paper>
         );
     }
