@@ -14,6 +14,7 @@ import {
     TableRow,
     Paper,
     IconButton,
+    Button,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -107,15 +108,28 @@ export default function SocialMedia() {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[10, 25, 50]}
-                    component="div"
-                    count={socialMedia.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        flexWrap: "wrap",
+                        alignItems: 'center'
+                    }}
+                >
+                    <Link to="add" state={socialMedia.length}>
+                        <Button variant="contained">Add new</Button>
+                    </Link>
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 50]}
+                        component="div"
+                        count={socialMedia.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        // width="400px"
+                    />
+                </Box>
             </Paper>
         );
     }

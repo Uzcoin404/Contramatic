@@ -2,22 +2,24 @@ import React, { useState, useContext } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../components/firebase";
 import { UserContext } from "../../../context/userContext";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+import {
+    AppBar,
+    Box,
+    Toolbar,
+    IconButton,
+    Typography,
+    Menu,
+    Container,
+    Avatar,
+    Button,
+    Tooltip,
+} from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 
 function Nav() {
-    const {user} = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -46,7 +48,7 @@ function Nav() {
         <AppBar
             position="fixed"
             sx={{
-                width: "calc(100% - 250px)",
+                width: "100%",
                 alignItems: "flex-end",
                 right: 0,
             }}
@@ -93,10 +95,7 @@ function Nav() {
                                 onClick={handleOpenUserMenu}
                                 sx={{ p: 0 }}
                             >
-                                <Avatar
-                                    alt={user.email}
-                                    src=""
-                                />
+                                <Avatar alt={user.email} src="" />
                             </IconButton>
                         </Tooltip>
                         <Menu

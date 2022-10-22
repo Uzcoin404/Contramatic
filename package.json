@@ -6,6 +6,7 @@
         "@emotion/react": "^11.10.0",
         "@emotion/styled": "^11.10.0",
         "@mui/icons-material": "^5.10.9",
+        "@mui/lab": "^5.0.0-alpha.104",
         "@mui/material": "^5.10.2",
         "@splidejs/react-splide": "^0.7.12",
         "@tinymce/tinymce-react": "^4.2.0",
