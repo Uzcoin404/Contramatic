@@ -9,7 +9,6 @@ import {
     Alert,
     AlertTitle,
 } from "@mui/material";
-import emailjs from '@emailjs/browser';
 import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../../components/get-started/getStartedBtn";
 import { title } from "../styles";
@@ -53,21 +52,7 @@ export default function Contact() {
         e.preventDefault();
         if ((email != "" && theme != "", message != "")) {
             if (validateEmail(email)) {
-                emailjs
-                    .sendForm(
-                        "YOUR_SERVICE_ID",
-                        "YOUR_TEMPLATE_ID",
-                        form.current,
-                        "5VRAmi8XKMwmBkk79"
-                    )
-                    .then(
-                        (result) => {
-                            console.log(result.text);
-                        },
-                        (error) => {
-                            console.log(error.text);
-                        }
-                    );
+
             } else {
                 setError(
                     "Email is incorrect, <br> Please use a valid email address"

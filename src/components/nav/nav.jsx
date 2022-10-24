@@ -89,7 +89,7 @@ export default function Nav(props) {
                                     sx={{
                                         color: "#fff",
                                         textTransform: "capitalize",
-                                        margin: '0 auto'
+                                        margin: "0 auto",
                                     }}
                                     dangerouslySetInnerHTML={{
                                         __html: item.title,
@@ -97,7 +97,7 @@ export default function Nav(props) {
                                 />
                             </ListItemButton>
                         </ListItem>
-                        {pages.length != i ? (<Divider/>) : null}
+                        {pages.length != i ? <Divider /> : null}
                     </Link>
                 ))}
             </List>
@@ -125,13 +125,12 @@ export default function Nav(props) {
                             }}
                         >
                             <IconButton
-                                size="large"
                                 edge="start"
                                 color="inherit"
                                 aria-label="menu"
                                 sx={{
                                     display: { xs: "flex", md: "none" },
-                                    mr: 2,
+                                    // mr: 2,
                                 }}
                                 onClick={handleDrawerToggle}
                             >
@@ -152,7 +151,9 @@ export default function Nav(props) {
                                             fontFamily: "Arvo",
                                         },
                                     }}
-                                    dangerouslySetInnerHTML={{ __html: data.logo_text }}
+                                    dangerouslySetInnerHTML={{
+                                        __html: data.logo_text,
+                                    }}
                                 />
                             </Link>
                         </Box>
@@ -177,7 +178,7 @@ export default function Nav(props) {
                                 />
                             ))}
                         </Box>
-                        <Box>
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
                             <FormControl sx={{ mr: 1.5 }}>
                                 <Select
                                     id="language-switcher"

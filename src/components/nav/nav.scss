@@ -37,7 +37,7 @@
     line-height: 26px;
     text-transform: capitalize;
     color: #131515;
-    transition: .2s;
+    transition: 0.2s;
     font-family: "Alfa Slab One", cursive;
     &:hover {
         color: #92cf8d;
@@ -91,7 +91,7 @@
         &__link {
             font-size: 16px;
         }
-        &__list{
+        &__list {
             column-gap: 16px !important;
         }
         .MuiToolbar-root {
@@ -110,17 +110,35 @@
     }
 }
 @media (max-width: 660px) {
-    .nav {
-        .logo__text {
-            display: none;
-        }
-    }
-    #language-switcher{
+    #language-switcher {
         height: 50px;
         width: 50px;
     }
-    .appbar{
+    .appbar {
         padding-top: 20px !important;
         padding-bottom: 25px !important;
+    }
+}
+@media (max-width: 500px) {
+    .nav {
+        .logo__text {
+            font-size: 18px !important;
+            margin-left: -30px;
+        }
+        .getStarted__btn p{
+            font-size: 15px;
+        }
+        .getStarted__btn{
+            padding: 5px 8px !important;
+        }
+        #language-switcher{
+            width: 45px;
+            height: 45px;
+        }
+    }
+}
+@media (max-width: 355px) {
+    .logo__text {
+        display: none;
     }
 }
