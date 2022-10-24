@@ -16,7 +16,7 @@ export default function Software() {
                         variant="subtitle1"
                         className="section__subtitle"
                         style={subtitle}
-                        dangerouslySetInnerHTML={{ __html: data.nav_link2 }}
+                        dangerouslySetInnerHTML={{ __html: data.nav_link3 }}
                     ></Typography>
                     <Typography
                         variant="h2"
@@ -35,7 +35,7 @@ export default function Software() {
                         dangerouslySetInnerHTML={{ __html: data.software_text }}
                     ></Typography>
                 </Box>
-                <Box className="section__item" sx={{ mr: 2.5 }}>
+                <Box className="section__item" sx={{ mr: { xs: 0, md: 2.5 } }}>
                     <img src={sectionImg} alt="" className="section__img" />
                 </Box>
             </Container>

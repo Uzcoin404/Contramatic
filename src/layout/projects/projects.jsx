@@ -40,6 +40,7 @@ export default function Projects() {
                         aria-label="My Favorite Images"
                         options={{
                             type: "loop",
+                            autoplay: true,
                             width: "100%",
                             gap: "1rem",
                             perPage: 5,
@@ -67,12 +68,11 @@ export default function Projects() {
                                     >
                                         {box.title}
                                     </Typography>
-                                    <IconButton
-                                        className="projects__btn"
-                                        href={box.link}
-                                    >
-                                        <img src={rightArrow} alt="" />
-                                    </IconButton>
+                                    <a href={box.link}>
+                                        <IconButton className="projects__btn">
+                                            <img src={rightArrow} alt="" />
+                                        </IconButton>
+                                    </a>
                                 </Box>
                             </SplideSlide>
                         ))}

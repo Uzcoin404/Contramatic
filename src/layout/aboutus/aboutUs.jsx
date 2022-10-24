@@ -19,7 +19,7 @@ export default function AboutUs() {
                     variant="subtitle1"
                     className="section__subtitle"
                     style={subtitle}
-                    dangerouslySetInnerHTML={{ __html: data.nav_link1 }}
+                    dangerouslySetInnerHTML={{ __html: data.nav_link2 }}
                 ></Typography>
                 <Typography
                     variant="h2"

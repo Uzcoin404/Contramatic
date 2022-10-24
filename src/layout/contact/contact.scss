@@ -9,12 +9,6 @@ input:-webkit-autofill:active {
     input:-webkit-autofill {
         -webkit-text-fill-color: #fff !important;
     }
-    &__textfield {
-        input {
-            height: 100%;
-            
-        }
-    }
     @media (max-width: 900px) {
         &__input {
             min-width: auto !important;

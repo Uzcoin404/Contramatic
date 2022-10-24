@@ -91,6 +91,6 @@
         width: 100%;
     }
     @media (max-width: 660px) {
-        display: none;
+        width: 100% !important;
     }
 }

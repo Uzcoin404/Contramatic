@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import {
     Box,
     Container,
@@ -9,6 +9,7 @@ import {
     Alert,
     AlertTitle,
 } from "@mui/material";
+import emailjs from '@emailjs/browser';
 import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../../components/get-started/getStartedBtn";
 import { title } from "../styles";
@@ -22,6 +23,8 @@ export default function Contact() {
     const [open, setOpen] = useState(false);
     const [error, setError] = useState("");
     const handleClose = () => setOpen(false);
+
+    const form = useRef();
     const inputStyle = {
         minWidth: "385px",
         mb: 3.5,
@@ -50,9 +53,25 @@ export default function Contact() {
         e.preventDefault();
         if ((email != "" && theme != "", message != "")) {
             if (validateEmail(email)) {
-                window.location.reload(false);
+                emailjs
+                    .sendForm(
+                        "YOUR_SERVICE_ID",
+                        "YOUR_TEMPLATE_ID",
+                        form.current,
+                        "5VRAmi8XKMwmBkk79"
+                    )
+                    .then(
+                        (result) => {
+                            console.log(result.text);
+                        },
+                        (error) => {
+                            console.log(error.text);
+                        }
+                    );
             } else {
-                setError("Email is incorrect");
+                setError(
+                    "Email is incorrect, <br> Please use a valid email address"
+                );
                 setOpen(true);
             }
         } else {
@@ -70,8 +89,9 @@ export default function Contact() {
 
     const style = {
         position: "absolute",
-        top: "5%",
-        left: "5%",
+        top: "40%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
         maxWidth: 400,
         width: "100%",
         boxShadow: 10,
@@ -90,6 +110,7 @@ export default function Contact() {
                     component="form"
                     action="#"
                     sx={{ margin: "0 auto", width: "max-content" }}
+                    ref={form}
                 >
                     <Box>
                         <FormControl>
@@ -131,23 +152,19 @@ export default function Contact() {
                         <TextField
                             label="Your message"
                             variant="outlined"
-                            className="contact__input contact__textfield"
+                            className="contact__input"
                             size="large"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             sx={{
-                                minWidth: "100%",
-                                mb: 4,
+                                mb: 3.5,
                                 "& .MuiInputBase-root": {
-                                    height: 210,
                                     color: "#fff",
-                                    padding: "0 20px",
                                 },
                                 "& label.Mui-focused": {
                                     color: "#fff",
                                 },
                                 "& label": {
-                                    pl: 1,
                                     fontSize: 18,
                                 },
                                 "& .MuiOutlinedInput-root.Mui-focused fieldset":
@@ -155,6 +172,8 @@ export default function Contact() {
                                         borderColor: "#fff",
                                     },
                             }}
+                            multiline
+                            rows={6}
                         />
                     </FormControl>
                     <Box sx={{ display: "flex", justifyContent: "end" }}>
@@ -168,9 +187,11 @@ export default function Contact() {
             </Container>
             <Modal keepMounted open={open} onClose={handleClose}>
                 <Box sx={style}>
-                    <Alert severity="error">
-                        <AlertTitle>Error</AlertTitle>
-                        {error}
+                    <Alert severity="error" sx={{ p: 2 }}>
+                        <AlertTitle
+                            sx={{ m: 0 }}
+                            dangerouslySetInnerHTML={{ __html: error }}
+                        />
                     </Alert>
                 </Box>
             </Modal>

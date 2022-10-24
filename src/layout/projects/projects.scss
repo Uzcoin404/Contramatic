@@ -1,6 +1,18 @@
 .projects{
     margin-top: 50px;
     margin-bottom: 80px;
+    .splide__arrow{
+        top: calc(50% - 25px);
+        background: #88d381;
+        opacity: 0.8;
+        width: 3em;
+        height: 3em;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        transition: .3s;
+        &:hover{
+            opacity: 1;
+        }
+    }
     &__box{
         position: relative;
         width: 210px;
