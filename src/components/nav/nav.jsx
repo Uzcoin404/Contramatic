@@ -14,7 +14,6 @@ import {
     List,
     ListItem,
     ListItemButton,
-    ListItemText,
 } from "@mui/material";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -98,6 +97,7 @@ export default function Nav(props) {
                                 />
                             </ListItemButton>
                         </ListItem>
+                        {pages.length != i ? (<Divider/>) : null}
                     </Link>
                 ))}
             </List>
@@ -218,7 +218,7 @@ export default function Nav(props) {
                         "& .MuiDrawer-paper": {
                             backgroundColor: "#5e5e5e",
                             boxSizing: "border-box",
-                            width: 250,
+                            width: 220,
                         },
                     }}
                 >
