@@ -15,7 +15,7 @@ export default function FormModal({ modal, setModal }) {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    maxWidth: 400,
+                    maxWidth: {xs: 250, sm: 400},
                     width: "100%",
                     boxShadow: 10,
                 }}
