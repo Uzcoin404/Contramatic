@@ -50,6 +50,7 @@ export default function Projects() {
                                 700: { perPage: 2 },
                                 500: { perPage: 1 },
                             },
+                            pagination: false
                         }}
                     >
                         {projects?.map((box, i) => (

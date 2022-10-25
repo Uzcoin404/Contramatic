@@ -5,12 +5,10 @@ import {
     TextField,
     FormControl,
     Typography,
-    Modal,
-    Alert,
-    AlertTitle,
 } from "@mui/material";
 import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../../components/get-started/getStartedBtn";
+import FormModal from "../../components/form-modal/formModal";
 import { title } from "../styles";
 import "./contact.scss";
 
@@ -19,9 +17,11 @@ export default function Contact() {
     const [email, setEmail] = useState("");
     const [theme, setTheme] = useState("");
     const [message, setMessage] = useState("");
-    const [open, setOpen] = useState(false);
-    const [error, setError] = useState("");
-    const handleClose = () => setOpen(false);
+    const [modal, setModal] = useState({
+        open: false,
+        isSuccess: null,
+        message: "",
+    });
 
     const form = useRef();
     const inputStyle = {
@@ -52,16 +52,27 @@ export default function Contact() {
         e.preventDefault();
         if ((email != "" && theme != "", message != "")) {
             if (validateEmail(email)) {
-
+                setModal({
+                    open: true,
+                    isSuccess: true,
+                    message: "Your message has been sent",
+                });
+                setEmail("")
+                setTheme("")
+                setMessage("")
             } else {
-                setError(
-                    "Email is incorrect, <br> Please use a valid email address"
-                );
-                setOpen(true);
+                setModal({
+                    open: true,
+                    isSuccess: false,
+                    message: "Email is incorrect, <br> Please use a valid email address",
+                });
             }
         } else {
-            setError("Please fill out all fields");
-            setOpen(true);
+            setModal({
+                open: true,
+                isSuccess: false,
+                message: "Please fill out all fields",
+            });
         }
     }
     const validateEmail = (email) => {
@@ -170,16 +181,7 @@ export default function Contact() {
                     </Box>
                 </Box>
             </Container>
-            <Modal keepMounted open={open} onClose={handleClose}>
-                <Box sx={style}>
-                    <Alert severity="error" sx={{ p: 2 }}>
-                        <AlertTitle
-                            sx={{ m: 0 }}
-                            dangerouslySetInnerHTML={{ __html: error }}
-                        />
-                    </Alert>
-                </Box>
-            </Modal>
+            <FormModal modal={modal} setModal={setModal} />
         </Box>
     );
 }

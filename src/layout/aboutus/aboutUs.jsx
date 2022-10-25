@@ -4,7 +4,6 @@ import { DataContext } from "../../context/dataContext";
 import { title, subtitle, text } from "../styles";
 import sectionImg from "../../assets/img/aboutus.png";
 import sectionImgDesktop from "../../assets/img/About-desktop.png";
-import aboutusBubble1 from "../../assets/img/aboutus-bubble1.png";
 import aboutusBubble2 from "../../assets/img/aboutus-bubble2.png";
 import "./aboutus.scss";
 
@@ -41,7 +40,6 @@ export default function AboutUs() {
                     sx={{ maxWidth: 643 }}
                     dangerouslySetInnerHTML={{ __html: data.aboutus_text }}
                 ></Typography>
-                <img src={aboutusBubble1} alt="" className="aboutus__bubble1" />
                 <img src={aboutusBubble2} alt="" className="aboutus__bubble2" />
             </Box>
         </Box>

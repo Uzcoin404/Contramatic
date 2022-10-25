@@ -40,7 +40,7 @@ export default function Hero() {
                     />
                     <GetStartedBtn withArrow={true} />
                     <img src={hero1} alt="" className="hero__bubble1" />
-                    <img src={hero2} alt="" className="hero__bubble2" />
+                    {/* <img src={hero2} alt="" className="hero__bubble2" /> */}
                 </Box>
             </Container>
         </Box>

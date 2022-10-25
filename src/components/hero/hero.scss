@@ -1,6 +1,7 @@
 .hero {
-    background: url("../../assets/img/main-image.gif") no-repeat;
-    background-position: 60% 330px;
+    background: url("../../assets/img/animation-web.gif") no-repeat;
+    background-position: 60% 320px;
+    background-size: 1200px;
     height: 100vh;
     max-height: 900px;
     padding-top: 150px;
@@ -8,12 +9,11 @@
         z-index: 1;
     }
     &__bubble1, &__bubble2 {
-        position: absolute;
+        position: absolute; 
         z-index: -1;
     }
     &__bubble1 {
-        left: 10%;
-        top: -70px;
+        display: none;
     }
     &__bubble2 {
         left: 30%;
@@ -67,18 +67,29 @@
         &__bubble2{
             display: none;
         }
+        background: url("../../assets/img/animation-mobile.gif") no-repeat;
+        background-size: 600px;
+        background-position: -20px 250px;
+        max-height: 660px
     }
     @media (max-width: 425px) {
         background-position: 5% 400px;
         background-size: 600px;
         &__title{
             font-size: 28px !important;
+            margin-bottom: 20px !important;
         }
         &__subtitle{
-            font-size: 18px !important;
+            font-size: 15px !important;
         }
         &__bubble1 {
-            left: -10%;
+            display: block;
+            left: 0;
+            top: -70px;
+            width: 400px;
+            height: 300px;
         }
+        background-size: 375px;
+        background-position: 0px 350px;;
     }
 }

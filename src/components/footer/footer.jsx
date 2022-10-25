@@ -1,17 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import {
-    Box,
-    Container,
-    Typography,
-    Button,
-    Modal,
-    Alert,
-    AlertTitle,
-} from "@mui/material";
+import { Box, Container, Typography, Button } from "@mui/material";
 import { db } from "../firebase";
 import { collection, getDocs, doc, setDoc } from "firebase/firestore";
 import { DataContext } from "../../context/dataContext";
 import parse from "html-react-parser";
+import FormModal from "../form-modal/formModal";
 
 import emailIcon from "../../assets/img/icons/email.svg";
 import phoneIcon from "../../assets/img/icons/phone.svg";
@@ -21,8 +14,11 @@ export default function Footer() {
     const { data } = useContext(DataContext);
     const [socialMedia, setSocialMedia] = useState(null);
     const [email, setEmail] = useState("");
-    const [open, setOpen] = useState(false);
-    const handleClose = () => setOpen(false);
+    const [modal, setModal] = useState({
+        open: false,
+        isSuccess: null,
+        message: "",
+    });
 
     useEffect(() => {
         async function getData() {
@@ -42,19 +38,9 @@ export default function Footer() {
             email: email,
             date: Date.now(),
         });
-        setOpen(true);
+        setModal({ open: true, isSuccess: true, message: "You a subscribed!" });
         setEmail("");
     }
-
-    const style = {
-        position: "absolute",
-        top: "40%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        maxWidth: 400,
-        width: "100%",
-        boxShadow: 10,
-    };
     return (
         <Box className="footer" component="footer" sx={{ mt: 4.5, pb: 7.5 }}>
             <Container>
@@ -184,13 +170,7 @@ export default function Footer() {
                     </Box>
                 </Box>
             </Container>
-            <Modal keepMounted open={open} onClose={handleClose}>
-                <Box sx={style}>
-                    <Alert severity="success" sx={{ p: 2 }}>
-                        <AlertTitle sx={{ m: 0 }}>Successfully subscribed</AlertTitle>
-                    </Alert>
-                </Box>
-            </Modal>
+            <FormModal modal={modal} setModal={setModal} />
         </Box>
     );
 }
