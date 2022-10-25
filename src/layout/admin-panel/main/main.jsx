@@ -8,6 +8,7 @@ import AddSocial from "../social-media/addSocial";
 import EditSocial from "../social-media/editSocial";
 import Projects from "../projects/proejcts";
 import EditProject from "../projects/editProject";
+import Subscribers from "../subscribers/subscribers";
 
 import "./main.scss";
 
@@ -22,6 +23,7 @@ export default function Main() {
                 <Route path="/social-media/:id" element={<EditSocial />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/projects/:labelId" element={<EditProject />} />
+                <Route path="/subscribers" element={<Subscribers />} />
             </Routes>
         </Box>
     );

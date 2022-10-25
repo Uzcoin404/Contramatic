@@ -53,8 +53,8 @@ export default function Projects() {
                         }}
                     >
                         {projects?.map((box, i) => (
-                            <SplideSlide>
-                                <Box className="projects__box" key={i}>
+                            <SplideSlide key={i}>
+                                <Box className="projects__box">
                                     <img src={box.icon} alt="" />
                                     <Typography
                                         variant="body2"

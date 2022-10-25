@@ -1,7 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Box, Container, Typography, Button } from "@mui/material";
+import {
+    Box,
+    Container,
+    Typography,
+    Button,
+    Modal,
+    Alert,
+    AlertTitle,
+} from "@mui/material";
 import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc } from "firebase/firestore";
 import { DataContext } from "../../context/dataContext";
 import parse from "html-react-parser";
 
@@ -12,6 +20,10 @@ import "./footer.scss";
 export default function Footer() {
     const { data } = useContext(DataContext);
     const [socialMedia, setSocialMedia] = useState(null);
+    const [email, setEmail] = useState("");
+    const [open, setOpen] = useState(false);
+    const handleClose = () => setOpen(false);
+
     useEffect(() => {
         async function getData() {
             const querySnapshot = await getDocs(collection(db, "social-media"));
@@ -23,6 +35,26 @@ export default function Footer() {
         }
         getData();
     }, []);
+
+    async function sendData(e) {
+        e.preventDefault();
+        await setDoc(doc(db, "subscribers", email), {
+            email: email,
+            date: Date.now(),
+        });
+        setOpen(true);
+        setEmail("");
+    }
+
+    const style = {
+        position: "absolute",
+        top: "40%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        maxWidth: 400,
+        width: "100%",
+        boxShadow: 10,
+    };
     return (
         <Box className="footer" component="footer" sx={{ mt: 4.5, pb: 7.5 }}>
             <Container>
@@ -136,44 +168,14 @@ export default function Footer() {
                         ))}
                     </Box>
                 </Box>
-                <Box
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                    }}
-                    className="footer__contact"
-                >
-                    <Box sx={{ display: "flex" }}>
-                        <Typography
-                            variant="body2"
-                            fontSize={14}
-                            fontFamily="Open Sans"
-                            sx={{ mr: 4 }}
-                        >
-                            Impressum
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            fontSize={14}
-                            fontFamily="Open Sans"
-                            sx={{ mr: 4 }}
-                        >
-                            Datenschutz
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            fontSize={14}
-                            fontFamily="Open Sans"
-                        >
-                            Cookie-Einstellungen
-                        </Typography>
-                    </Box>
-                    <Box component="form">
+                <Box className="footer__contact">
+                    <Box component="form" onSubmit={sendData}>
                         <input
                             type="email"
                             className="footer__input"
                             placeholder="Your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                         <Button variant="contained" type="submit">
@@ -182,6 +184,13 @@ export default function Footer() {
                     </Box>
                 </Box>
             </Container>
+            <Modal keepMounted open={open} onClose={handleClose}>
+                <Box sx={style}>
+                    <Alert severity="success" sx={{ p: 2 }}>
+                        <AlertTitle sx={{ m: 0 }}>Successfully subscribed</AlertTitle>
+                    </Alert>
+                </Box>
+            </Modal>
         </Box>
     );
 }

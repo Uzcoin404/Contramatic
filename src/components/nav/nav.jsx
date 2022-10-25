@@ -97,7 +97,7 @@ export default function Nav(props) {
                                 />
                             </ListItemButton>
                         </ListItem>
-                        {pages.length != i ? <Divider /> : null}
+                        <Divider />
                     </Link>
                 ))}
             </List>
