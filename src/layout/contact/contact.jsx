@@ -57,9 +57,10 @@ export default function Contact() {
                     isSuccess: true,
                     message: "Your message has been sent",
                 });
-                setEmail("")
-                setTheme("")
-                setMessage("")
+                setEmail("");
+                setTheme("");
+                setMessage("");
+                form.current.reset();
             } else {
                 setModal({
                     open: true,
