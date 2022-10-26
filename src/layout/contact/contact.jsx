@@ -14,6 +14,7 @@ import "./contact.scss";
 
 export default function Contact() {
     const { data } = useContext(DataContext);
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [theme, setTheme] = useState("");
     const [message, setMessage] = useState("");
@@ -57,15 +58,16 @@ export default function Contact() {
                     isSuccess: true,
                     message: "Your message has been sent",
                 });
+                setName("");
                 setEmail("");
                 setTheme("");
                 setMessage("");
-                form.current.reset();
             } else {
                 setModal({
                     open: true,
                     isSuccess: false,
-                    message: "Email is incorrect, <br> Please use a valid email address",
+                    message:
+                        "Email is incorrect, <br> Please use a valid email address",
                 });
             }
         } else {
@@ -118,6 +120,8 @@ export default function Contact() {
                                 size="large"
                                 sx={inputStyle}
                                 style={{ marginRight: 45 }}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                             />
                         </FormControl>
                         <FormControl>

@@ -25,6 +25,7 @@ export default function Projects() {
         }
         getData();
     }, []);
+
     return (
         <Box className="projects" id="projects">
             <Container>
@@ -43,14 +44,17 @@ export default function Projects() {
                             autoplay: true,
                             width: "100%",
                             gap: "1rem",
+                            perMove: 1,
                             perPage: 5,
-                            breakpoints: {
-                                1200: { perPage: 4 },
-                                950: { perPage: 3 },
-                                700: { perPage: 2 },
-                                500: { perPage: 1 },
-                            },
-                            pagination: false
+                            autoWidth: true,
+                            lazyLoad: 'nearby',
+                            // breakpoints: {
+                            //     500: { perPage: 1 },
+                            //     700: { perPage: 2 },
+                            //     950: { perPage: 3 },
+                            //     1200: { perPage: 4 },
+                            // },
+                            pagination: false,
                         }}
                     >
                         {projects?.map((box, i) => (
