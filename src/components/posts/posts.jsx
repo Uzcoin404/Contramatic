@@ -26,7 +26,7 @@ export default function Posts() {
 
     useEffect(() => {
         async function getData() {
-            const docRef = doc(db, "data", 'en');
+            const docRef = doc(db, "data", langId);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
