@@ -25,6 +25,12 @@
         }
     }
 }
+.section__subtitle,
+.section__subtitle p,
+.section__text,
+.section__text p {
+    font-family: "Open Sans";
+}
 .section {
     @media (max-width: 660px) {
         &__title {
@@ -73,12 +79,13 @@
     .section__subtitle2 {
         font-size: 16px !important;
     }
-    .projects{
+    .projects {
         margin-top: 40px !important;
     }
 }
 @media (max-width: 425px) {
-    .aboutus .section__content, .white__label .section__content {
+    .aboutus .section__content,
+    .white__label .section__content {
         padding: 0 15px;
     }
 }

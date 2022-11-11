@@ -66,7 +66,6 @@ export default function Nav(props) {
                 variant="h4"
                 fontSize={26}
                 fontWeight={400}
-                fontFamily="Arvo"
                 color="#fff"
                 className="logo__text"
                 sx={{
@@ -74,7 +73,6 @@ export default function Nav(props) {
                     my: 2,
                     "& span": {
                         color: "#BEBEBE",
-                        fontFamily: "Arvo",
                     },
                 }}
                 dangerouslySetInnerHTML={{ __html: data.logo_text }}
@@ -141,14 +139,12 @@ export default function Nav(props) {
                                     variant="h4"
                                     fontSize={26}
                                     fontWeight={400}
-                                    fontFamily="Arvo"
                                     color="#fff"
                                     className="logo__text"
                                     sx={{
                                         flexGrow: 1,
                                         "& span": {
                                             color: "#BEBEBE",
-                                            fontFamily: "Arvo",
                                         },
                                     }}
                                     dangerouslySetInnerHTML={{

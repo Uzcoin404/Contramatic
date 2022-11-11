@@ -11,7 +11,6 @@ export default function Labels({ data }) {
                     variant="h3"
                     fontSize={28}
                     fontWeight={400}
-                    fontFamily="Alfa Slab One"
                     color="#131515"
                     sx={{ mb: 4 }}
                     className="label__title"
@@ -28,7 +27,6 @@ export default function Labels({ data }) {
                     fontSize={16}
                     lineHeight="23px"
                     fontWeight={400}
-                    fontFamily="Open Sans"
                     color="#131515"
                     className="label__text"
                     dangerouslySetInnerHTML={{ __html: label?.description }}

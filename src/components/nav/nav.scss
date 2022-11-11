@@ -38,7 +38,6 @@
     text-transform: capitalize;
     color: #131515;
     transition: 0.2s;
-    font-family: "Alfa Slab One", cursive;
     &:hover {
         color: #92cf8d;
     }
@@ -79,9 +78,9 @@
 }
 .language__name {
     margin-left: 10px;
-    font-family: "Open Sans";
     text-transform: capitalize;
     font-weight: 700;
+    font-family: sans-serif;
 }
 @media (max-width: 1100px) {
     .nav {

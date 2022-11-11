@@ -18,7 +18,6 @@ export default function Hero() {
                         className="hero__subtitle"
                         fontSize={24}
                         fontWeight={800}
-                        fontFamily="Open Sans"
                         onLoad={() => console.log("fsd")}
                         sx={{ mb: 1.25, opacity: 0.5 }}
                         dangerouslySetInnerHTML={{ __html: data.hero_subtitle }}
@@ -29,7 +28,6 @@ export default function Hero() {
                         fontWeight={400}
                         lineHeight="64px"
                         color="#131515"
-                        fontFamily="Alfa Slab One"
                         className="hero__title"
                         sx={{
                             mb: 5,

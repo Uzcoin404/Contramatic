@@ -1,10 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, useNavigate, NavLink as Link } from "react-router-dom";
-import { DataContext } from "../../context/dataContext";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import {
-    Box,
     Table,
     TableBody,
     TableCell,
@@ -20,9 +18,8 @@ import EditIcon from "@mui/icons-material/Edit";
 export default function Posts() {
     const [posts, setPosts] = useState(null);
     const { langId } = useParams();
-    const navigate = useNavigate();
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(50);
+    const [rowsPerPage, setRowsPerPage] = useState(30);
 
     useEffect(() => {
         async function getData() {
@@ -31,16 +28,10 @@ export default function Posts() {
 
             if (docSnap.exists()) {
                 setPosts(Object.values(docSnap.data()));
-            } else {
-                console.log("No such document!");
             }
         }
         getData();
     }, [langId]);
-
-    if (posts) {
-        console.log(posts);
-    }
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -88,6 +79,12 @@ export default function Posts() {
                                             </TableCell>
                                             <TableCell
                                                 align="center"
+                                                sx={{
+                                                    "& p": {
+                                                        fontFamily:
+                                                            '"Roboto","Helvetica","Arial",sans-serif',
+                                                    },
+                                                }}
                                                 dangerouslySetInnerHTML={{
                                                     __html: row?.title,
                                                 }}

@@ -6,6 +6,7 @@ import {
     FormControl,
     Typography,
 } from "@mui/material";
+import parse from "html-react-parser";
 import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../../components/get-started/getStartedBtn";
 import FormModal from "../../components/form-modal/formModal";
@@ -56,7 +57,7 @@ export default function Contact() {
                 setModal({
                     open: true,
                     isSuccess: true,
-                    message: "Your message has been sent",
+                    message: data.contact_alert3,
                 });
                 setName("");
                 setEmail("");
@@ -66,15 +67,14 @@ export default function Contact() {
                 setModal({
                     open: true,
                     isSuccess: false,
-                    message:
-                        "Email is incorrect, <br> Please use a valid email address",
+                    message: data.contact_alert2
                 });
             }
         } else {
             setModal({
                 open: true,
                 isSuccess: false,
-                message: "Please fill out all fields",
+                message: data.contact_alert1,
             });
         }
     }
@@ -114,7 +114,7 @@ export default function Contact() {
                     <Box>
                         <FormControl>
                             <TextField
-                                label="Your name"
+                                label={data.contact_input1?.replace(/<[^>]+>/g, '')}
                                 variant="outlined"
                                 className="contact__input"
                                 size="large"
@@ -126,7 +126,7 @@ export default function Contact() {
                         </FormControl>
                         <FormControl>
                             <TextField
-                                label="Your email"
+                                label={data.contact_input2?.replace(/<[^>]+>/g, '')}
                                 variant="outlined"
                                 className="contact__input"
                                 size="large"
@@ -139,7 +139,7 @@ export default function Contact() {
                     </Box>
                     <FormControl fullWidth>
                         <TextField
-                            label="Theme"
+                            label={data.contact_input3?.replace(/<[^>]+>/g, '')}
                             variant="outlined"
                             className="contact__input"
                             size="large"
@@ -151,7 +151,7 @@ export default function Contact() {
                     </FormControl>
                     <FormControl fullWidth>
                         <TextField
-                            label="Your message"
+                            label={data.contact_input4?.replace(/<[^>]+>/g, '')}
                             variant="outlined"
                             className="contact__input"
                             size="large"

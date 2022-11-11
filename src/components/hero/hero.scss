@@ -19,6 +19,9 @@
         left: 30%;
         top: 50px;
     }
+    &__subtitle p{
+        font-family: "Open Sans";
+    }
     @media (max-width: 1440px) {
         padding-top: 100px;
         background-position: 50% 200px;

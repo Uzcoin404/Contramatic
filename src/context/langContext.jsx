@@ -4,7 +4,7 @@ const LangContext = createContext()
 
 function Provider({children}) {
 
-    const [lang, setLang] = useState(window.localStorage.getItem("lang") || "en");
+    const [lang, setLang] = useState(window.localStorage.getItem("lang") || "tr");
 
     useEffect(() => {
         window.localStorage.setItem("lang", lang);

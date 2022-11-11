@@ -67,7 +67,6 @@ export default function Login() {
                     variant="h4"
                     fontSize={26}
                     fontWeight={400}
-                    fontFamily="Arvo"
                     color="#000"
                     className="logo__text"
                     sx={{
@@ -75,7 +74,6 @@ export default function Login() {
                         my: 2,
                         "& span": {
                             color: "#BEBEBE",
-                            fontFamily: "Arvo",
                         },
                     }}
                 >

@@ -70,6 +70,9 @@
         background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
     }
     border-radius: 4px;
+    &__text p{
+        font-family: "Open Sans";
+    }
     .chips {
         display: flex;
         flex-wrap: wrap;
@@ -84,12 +87,14 @@
         border-top-right-radius: 0px;
         color: #fff;
         & span {
-            font-family: "Open Sans";
             font-weight: 400;
             font-size: 18px;
             line-height: 28px;
             letter-spacing: -0.02em;
             text-transform: capitalize;
+            & p{
+                font-family: "Open Sans";
+            }
         }
     }
     .label__img {

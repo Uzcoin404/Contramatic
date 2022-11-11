@@ -12,20 +12,21 @@ function Provider({ children }) {
 
     useEffect(() => {
         async function getData() {
-            const docRef = doc(db, "posts", lang);
+            const docRef = doc(db, "data", lang);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-                setData(docSnap.data());
+                let newPosts = {};
+                Object.values(docSnap.data())?.map((item) => {
+                    Object.assign(newPosts, { [item.keyword]: item.title });
+                });
+                setData(newPosts);
                 setLoading(false);
-            } else {
-                console.log("No such document!");
             }
         }
         getData();
     }, [lang]);
 
-    console.log(data);
     if (loading) {
         return "";
     }

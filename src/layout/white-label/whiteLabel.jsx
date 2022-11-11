@@ -39,7 +39,6 @@ export default function WhiteLabel() {
                     fontSize={18}
                     fontWeight={400}
                     lineHeight="28px"
-                    fontFamily="Alfa Slab One"
                     color="#131515"
                     sx={{ mb: 2.5 }}
                     dangerouslySetInnerHTML={{ __html: data.white_label_subtitle }}

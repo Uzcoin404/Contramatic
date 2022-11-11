@@ -38,7 +38,11 @@ export default function Footer() {
             email: email,
             date: Date.now(),
         });
-        setModal({ open: true, isSuccess: true, message: "You a subscribed!" });
+        setModal({
+            open: true,
+            isSuccess: true,
+            message: data.subscribe_alert1,
+        });
         setEmail("");
     }
     return (
@@ -48,12 +52,10 @@ export default function Footer() {
                     variant="h4"
                     fontSize={32}
                     fontWeight={400}
-                    fontFamily="Arvo"
                     color="#fff"
                     sx={{
                         "& span": {
                             color: "#131515 !important",
-                            fontFamily: "Arvo",
                         },
                     }}
                     dangerouslySetInnerHTML={{ __html: data.logo_text }}
@@ -92,7 +94,6 @@ export default function Footer() {
                                 variant="subtitle2"
                                 fontWeight={700}
                                 lineHeight="32px"
-                                fontFamily="Open Sans"
                                 color="#000"
                                 sx={{
                                     ml: 1.2,
@@ -121,7 +122,6 @@ export default function Footer() {
                                 fontSize={20}
                                 fontWeight={700}
                                 lineHeight="32px"
-                                fontFamily="Open Sans"
                                 color="#000"
                                 sx={{
                                     ml: 1.2,
@@ -159,13 +159,20 @@ export default function Footer() {
                         <input
                             type="email"
                             className="footer__input"
-                            placeholder="Your email"
+                            placeholder={data.contact_input2?.replace(
+                                /<[^>]+>/g,
+                                ""
+                            )}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                         <Button variant="contained" type="submit">
-                            Subscribe
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: data?.subscribe_form_btn,
+                                }}
+                            />
                         </Button>
                     </Box>
                 </Box>
