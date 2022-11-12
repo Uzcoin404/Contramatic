@@ -1,9 +1,9 @@
 .footer {
-    &__content{
+    &__content {
         flex-wrap: wrap;
         row-gap: 20px;
     }
-    &__contact{
+    &__contact {
         flex-wrap: wrap;
         row-gap: 15px;
     }
@@ -35,24 +35,30 @@
         outline: none;
         margin-right: 14px;
     }
-    .social__media img{
+    .social__media img {
         width: 45px;
         height: 45px;
     }
     @media (max-width: 900px) {
         text-align: center;
-        &__content, &__contact{
+        &__content,
+        &__contact {
             justify-content: center !important;
         }
     }
     @media (max-width: 500px) {
-        .social__media{
+        .social__media {
             gap: 20px;
         }
-        .social__media img{
+        .social__media img {
             width: 40px;
             height: 40px;
         }
         padding-bottom: 30px !important;
+        form {
+            button {
+                padding: 17px 30px;
+            }
+        }
     }
 }

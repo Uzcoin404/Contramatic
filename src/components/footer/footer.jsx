@@ -32,18 +32,42 @@ export default function Footer() {
         getData();
     }, []);
 
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
     async function sendData(e) {
         e.preventDefault();
-        await setDoc(doc(db, "subscribers", email), {
-            email: email,
-            date: Date.now(),
-        });
-        setModal({
-            open: true,
-            isSuccess: true,
-            message: data.subscribe_alert1,
-        });
-        setEmail("");
+        if (email != '') {
+            if (validateEmail(email)) {
+                await setDoc(doc(db, "subscribers", email), {
+                    email: email,
+                    date: Date.now(),
+                });
+                setModal({
+                    open: true,
+                    isSuccess: true,
+                    message: data.subscribe_alert1,
+                });
+            } else {
+                setModal({
+                    open: true,
+                    isSuccess: false,
+                    message: data.contact_alert2,
+                });
+                setEmail("");
+            }
+        } else {
+            setModal({
+                open: true,
+                isSuccess: false,
+                message: data.contact_alert1,
+            });
+            setEmail("");
+        }
     }
     return (
         <Box className="footer" component="footer" sx={{ mt: 4.5, pb: 7.5 }}>
@@ -155,7 +179,7 @@ export default function Footer() {
                     </Box>
                 </Box>
                 <Box className="footer__contact">
-                    <Box component="form" onSubmit={sendData}>
+                    <Box component="form">
                         <input
                             type="email"
                             className="footer__input"
@@ -165,9 +189,12 @@ export default function Footer() {
                             )}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required
                         />
-                        <Button variant="contained" type="submit">
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            onClick={sendData}
+                        >
                             <span
                                 dangerouslySetInnerHTML={{
                                     __html: data?.subscribe_form_btn,

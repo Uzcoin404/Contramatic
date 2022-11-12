@@ -44,21 +44,13 @@ export default function Login() {
     function signIn(e) {
         e.preventDefault();
         setError(false);
-        // if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        //     if (password != "") {
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                console.log(userCredential.user);
-            })
-            .catch((error) => {
-                setError("Email or Password is wrong")
+        if (password != "") {
+            signInWithEmailAndPassword(auth, email, password).catch((error) => {
+                setError("Email or Password is wrong");
             });
-        //     } else {
-        //         setError("Enter a password");
-        //     }
-        // } else {
-        //     setError("Enter a valid email");
-        // }
+        } else {
+            setError("Enter a password");
+        }
     }
     return (
         <Box className="login">

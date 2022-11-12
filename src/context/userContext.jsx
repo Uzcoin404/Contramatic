@@ -15,7 +15,6 @@ function AuthProvider({ children }) {
         });
     }, []);
 
-    console.log(user);
     if (loading) {
         return ""
     }

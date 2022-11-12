@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../components/firebase";
 import { UserContext } from "../../../context/userContext";
+import { NavLink as Link } from "react-router-dom";
 import {
     AppBar,
     Box,
@@ -11,10 +12,9 @@ import {
     Menu,
     Container,
     Avatar,
-    Button,
     Tooltip,
+    MenuItem,
 } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 
@@ -117,6 +117,15 @@ function Nav() {
                             <MenuItem onClick={handleCloseUserMenu}>
                                 <Typography textAlign="center">
                                     {user.email}
+                                </Typography>
+                            </MenuItem>
+                            <MenuItem
+                                component={Link}
+                                onClick={handleCloseUserMenu}
+                                to={"/admin/reset-password"}
+                            >
+                                <Typography textAlign="center">
+                                    Change password
                                 </Typography>
                             </MenuItem>
                             <MenuItem onClick={logOut}>

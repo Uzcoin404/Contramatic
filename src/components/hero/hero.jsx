@@ -18,7 +18,6 @@ export default function Hero() {
                         className="hero__subtitle"
                         fontSize={24}
                         fontWeight={800}
-                        onLoad={() => console.log("fsd")}
                         sx={{ mb: 1.25, opacity: 0.5 }}
                         dangerouslySetInnerHTML={{ __html: data.hero_subtitle }}
                     />

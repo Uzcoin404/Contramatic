@@ -85,6 +85,7 @@ export default function Nav(props) {
                             <ListItemButton sx={{ textAlign: "center" }}>
                                 <Typography
                                     sx={{
+                                        fontFamily: "Chunkfive ex",
                                         color: "#fff",
                                         textTransform: "capitalize",
                                         margin: "0 auto",
