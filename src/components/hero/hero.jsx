@@ -4,7 +4,6 @@ import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../get-started/getStartedBtn";
 
 import hero1 from "../../assets/img/hero1.png";
-import hero2 from "../../assets/img/hero2.png";
 import "./hero.scss";
 
 export default function Hero() {
@@ -35,9 +34,8 @@ export default function Hero() {
                         }}
                         dangerouslySetInnerHTML={{ __html: data.hero_title }}
                     />
-                    <GetStartedBtn withArrow={true} />
+                    <GetStartedBtn withArrow={true} link="http://golden90.link" />
                     <img src={hero1} alt="" className="hero__bubble1" />
-                    {/* <img src={hero2} alt="" className="hero__bubble2" /> */}
                 </Box>
             </Container>
         </Box>

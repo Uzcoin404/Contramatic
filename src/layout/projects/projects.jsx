@@ -60,7 +60,7 @@ export default function Projects() {
                         {projects?.map((box, i) => (
                             <SplideSlide key={i}>
                                 <Box className="projects__box">
-                                    <img src={box.icon} alt="" />
+                                    <img src={box.icon} alt="" className="projects__logo" />
                                     <Typography
                                         variant="body2"
                                         fontSize={15}

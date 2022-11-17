@@ -51,7 +51,7 @@ export default function WhiteLabel() {
                     sx={{ mt: 0.5, mb: 4, maxWidth: 538 }}
                     dangerouslySetInnerHTML={{ __html: data.white_label_text }}
                 />
-                <GetStartedBtn withArrow={true} />
+                <GetStartedBtn withArrow={true} link="http://golden90.link" />
                 <img
                     src={whiteLabelBubble1}
                     alt=""
