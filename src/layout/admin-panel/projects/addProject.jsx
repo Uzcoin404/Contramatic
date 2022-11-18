@@ -6,7 +6,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../../components/firebase";
 
-export default function AddSocial() {
+export default function AddProject() {
     const location = useLocation();
     const history = useNavigate();
     const [title, setTitle] = useState("");
@@ -19,7 +19,7 @@ export default function AddSocial() {
         setLoading({ ...loading, icon: true });
         const storageRef = ref(
             storage,
-            "social-media/" + (Math.random() + 1).toString(36).substring(5)
+            "projects/" + (Math.random() + 1).toString(36).substring(5)
         );
 
         uploadBytes(storageRef, file).then(() => {
@@ -30,10 +30,10 @@ export default function AddSocial() {
         });
     }
 
-    async function setSocial() {
+    async function setProject() {
         setLoading({...loading, submit: true});
         if (title != "" && link != "" && icon != null) {
-            await setDoc(doc(db, "social-media", title), {
+            await setDoc(doc(db, "projects", title), {
                 id: location.state + 1,
                 title: title,
                 icon: icon,
@@ -87,7 +87,7 @@ export default function AddSocial() {
                 variant="contained"
                 loading={loading.submit}
                 sx={{ mt: 2, width: "max-content" }}
-                onClick={setSocial}
+                onClick={setProject}
             >
                 Submit
             </LoadingButton>

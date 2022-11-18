@@ -1,7 +1,10 @@
-.adminPanel{
+.adminPanel {
     background-color: #fff;
 }
-.main{
+.adminPanel * {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
+.main {
     margin-top: 65px;
     margin-left: auto;
 }

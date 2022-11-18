@@ -14,13 +14,10 @@ export default function AdminPanel() {
 
             if (docSnap.exists()) {
                 setlanguages(docSnap.data().langs);
-            } else {
-                console.log("No such document!");
             }
         }
         getLanguages();
     }, []);
-    console.log(languages);
     return (
         <div className="adminPanel">
             <Nav />

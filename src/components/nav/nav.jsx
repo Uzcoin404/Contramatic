@@ -38,8 +38,6 @@ export default function Nav(props) {
 
             if (docSnap.exists()) {
                 setlanguages(docSnap.data().langs);
-            } else {
-                console.log("No such document!");
             }
         }
         getLanguages();

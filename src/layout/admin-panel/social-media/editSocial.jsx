@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {
     doc,
@@ -20,7 +20,6 @@ export default function EditSocial() {
     const [icon, setIcon] = useState(social.icon);
     const [socialLink, setSocialLink] = useState(social.link);
     const [loading, setLoading] = useState({ icon: false, save: false });
-    console.log(loading.icon);
 
     useEffect(() => {
         async function getData() {

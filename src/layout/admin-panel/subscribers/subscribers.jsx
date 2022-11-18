@@ -21,7 +21,6 @@ export default function Subscribers() {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [subscribers, setSubscribers] = useState(null);
 
-    console.log(subscribers);
     useEffect(() => {
         async function getData() {
             const querySnapshot = await getDocs(collection(db, "subscribers"));

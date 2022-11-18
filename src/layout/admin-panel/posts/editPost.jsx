@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../../components/firebase";
 import { Box, Button } from "@mui/material";
 import { Editor } from "@tinymce/tinymce-react";
 
@@ -27,18 +27,6 @@ export default function EditPost() {
         });
         history(-1);
     }
-    async function getData() {
-        const newPost = doc(db, "data");
-        const docSnap = await getDoc(newPost);
-
-        if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }
-    getData();
     return (
         <Box className="editPost" sx={{ pt: 3 }}>
             <Editor

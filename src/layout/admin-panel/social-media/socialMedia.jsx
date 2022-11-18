@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useParams, useNavigate, NavLink as Link } from "react-router-dom";
-import { DataContext } from "../../../context/dataContext";
+import { NavLink as Link } from "react-router-dom";
 import { db } from "../../../components/firebase";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import {
@@ -20,6 +19,7 @@ import {
     DialogContent,
     DialogActions,
     Alert,
+    Typography,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -38,7 +38,7 @@ export default function SocialMedia() {
             const data = [];
             querySnapshot.forEach((doc) => {
                 let newData = doc.data();
-                newData['doc_id'] = doc.id;
+                newData["doc_id"] = doc.id;
                 data.push(newData);
             });
             setSocialMedia(data);
@@ -59,7 +59,7 @@ export default function SocialMedia() {
     };
     async function deleteSocial() {
         await deleteDoc(doc(db, "social-media", selectedItem));
-        setUpdateData(true);
+        setUpdateData(!updateData);
         handleClose();
     }
 
@@ -96,7 +96,7 @@ export default function SocialMedia() {
                                             key={i}
                                         >
                                             <TableCell align="left">
-                                                {row.id}
+                                                {i+1}
                                             </TableCell>
                                             <TableCell align="center">
                                                 {row.title}
@@ -167,7 +167,9 @@ export default function SocialMedia() {
                             severity="error"
                             sx={{ mt: 2, width: "100%", maxWidth: 500 }}
                         >
-                            This will permanently delete this Item
+                            <Typography>
+                                This will permanently delete this Item
+                            </Typography>
                         </Alert>
                     </DialogContent>
                     <DialogActions>
