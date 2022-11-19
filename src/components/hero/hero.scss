@@ -62,7 +62,17 @@
             top: -90px;
         }
     }
+    @media (max-width: 768px) {
+        background: url("../../assets/img/animation-mobile.gif") no-repeat;
+        background-size: 600px;
+        background-position: 30px 250px;
+        min-height: 700px;
+    }
     @media (max-width: 576px) {
+        background-size: 500px;
+        background-position: 0px 250px;
+        min-height: auto;
+        max-height: 650px;
         &__title{
             font-size: 30px !important;
             line-height: 40px !important;
@@ -71,14 +81,10 @@
         &__bubble2{
             display: none;
         }
-        background: url("../../assets/img/animation-mobile.gif") no-repeat;
-        background-size: 600px;
-        background-position: -20px 250px;
-        max-height: 660px
     }
     @media (max-width: 425px) {
-        background-position: 5% 400px;
-        background-size: 600px;
+        background-size: 375px;
+        background-position: 0 330px;
         &__title{
             font-size: 28px !important;
             margin-bottom: 20px !important;
@@ -93,7 +99,5 @@
             width: 400px;
             height: 300px;
         }
-        background-size: 375px;
-        background-position: 0px 350px;;
     }
 }

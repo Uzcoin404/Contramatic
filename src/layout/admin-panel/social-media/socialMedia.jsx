@@ -96,7 +96,7 @@ export default function SocialMedia() {
                                             key={i}
                                         >
                                             <TableCell align="left">
-                                                {i+1}
+                                                {i + 1}
                                             </TableCell>
                                             <TableCell align="center">
                                                 {row.title}
@@ -108,6 +108,7 @@ export default function SocialMedia() {
                                                     style={{
                                                         width: 45,
                                                         height: 45,
+                                                        objectFit: "contain",
                                                     }}
                                                 />
                                             </TableCell>
