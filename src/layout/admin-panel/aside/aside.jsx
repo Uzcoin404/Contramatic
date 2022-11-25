@@ -80,6 +80,10 @@ function Aside({ languages }) {
             to: "/admin/subscribers",
         },
         {
+            title: "links",
+            to: "/admin/links",
+        },
+        {
             icon: <Home />,
             title: "Website",
             to: "/",
