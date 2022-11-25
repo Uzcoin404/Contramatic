@@ -19,7 +19,11 @@ export default function Labels({ data }) {
                 <Box className="chips" sx={{ mb: 3 }}>
                     {label.hasOwnProperty("chips") &&
                         label.chips.map((chip, i) => (
-                            <Chip label={parse(chip)} className="chip" key={i} />
+                            <Chip
+                                label={parse(chip)}
+                                className="chip"
+                                key={i}
+                            />
                         ))}
                 </Box>
                 <Typography

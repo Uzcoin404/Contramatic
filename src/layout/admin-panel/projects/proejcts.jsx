@@ -109,6 +109,7 @@ export default function Projects() {
                                                     style={{
                                                         width: 180,
                                                         height: 40,
+                                                        objectFit: "contain",
                                                     }}
                                                 />
                                             </TableCell>
