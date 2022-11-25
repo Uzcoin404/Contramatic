@@ -195,7 +195,7 @@ export default function Nav(props) {
                                     ))}
                                 </Select>
                             </FormControl>
-                            <GetStartedBtn link="http://golden90.link" />
+                            <GetStartedBtn link={data?.get_started.link} />
                         </Box>
                     </Toolbar>
                 </Container>

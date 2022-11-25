@@ -9,7 +9,7 @@ import Projects from "./projects/projects";
 import Contact from "./contact/contact";
 import Footer from "../components/footer/footer";
 
-export default function Main() {
+export default function Home() {
     return (
         <div className="UI">
             <Nav />

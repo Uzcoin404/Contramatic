@@ -10,7 +10,7 @@ import Projects from "../projects/proejcts";
 import AddProject from "../projects/addProject";
 import EditProject from "../projects/editProject";
 import Subscribers from "../subscribers/subscribers";
-import ChangePassword from "../change-password/changePassword"
+import ChangePassword from "../change-password/changePassword";
 
 import "./main.scss";
 

@@ -17,7 +17,7 @@ function GetStartedBtn({ withArrow, isSubmit, onClick, link }) {
         >
             <span
                 dangerouslySetInnerHTML={{
-                    __html: !isSubmit ? data.get_started : data.contact_form_btn,
+                    __html: !isSubmit ? data.get_started.title : data.contact_form_btn,
                 }}
             />
             {withArrow ? (

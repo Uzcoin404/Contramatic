@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./layout/main";
+import Home from "./layout/home";
 import AdminPanel from "./layout/admin-panel/adminPanel";
 import { UserContext } from "./context/userContext";
 import Login from "./components/login/login"
@@ -11,7 +11,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Main />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/admin/*" element={user ? <AdminPanel /> : <Login />} />
             </Routes>
         </BrowserRouter>

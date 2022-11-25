@@ -19,6 +19,11 @@ function Provider({ children }) {
                 let newPosts = {};
                 Object.values(docSnap.data())?.map((item) => {
                     Object.assign(newPosts, { [item.keyword]: item.title });
+                    if (item?.link) {
+                        Object.assign(newPosts, {
+                            [item.keyword]: { 'title': item.title, 'link': item.link },
+                        });
+                    }
                 });
                 setData(newPosts);
                 setLoading(false);
@@ -26,6 +31,7 @@ function Provider({ children }) {
         }
         getData();
     }, [lang]);
+    console.log(data);
 
     if (loading) {
         return "";

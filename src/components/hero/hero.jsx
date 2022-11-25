@@ -34,7 +34,7 @@ export default function Hero() {
                         }}
                         dangerouslySetInnerHTML={{ __html: data.hero_title }}
                     />
-                    <GetStartedBtn withArrow={true} link="http://golden90.link" />
+                    <GetStartedBtn withArrow={true} link={data?.get_started.link} />
                     <img src={hero1} alt="" className="hero__bubble1" />
                 </Box>
             </Container>
