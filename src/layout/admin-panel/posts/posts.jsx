@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
-import { useParams, useNavigate, NavLink as Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, NavLink as Link } from "react-router-dom";
 import { db } from "../../../components/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import {
@@ -19,7 +19,7 @@ export default function Posts() {
     const [posts, setPosts] = useState(null);
     const { langId } = useParams();
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(30);
+    const [rowsPerPage, setRowsPerPage] = useState(25);
 
     useEffect(() => {
         async function getData() {

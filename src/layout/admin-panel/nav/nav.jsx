@@ -16,7 +16,6 @@ import {
     MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
 
 function Nav() {
     const { user } = useContext(UserContext);

@@ -7,4 +7,20 @@
 .main {
     margin-top: 65px;
     margin-left: auto;
+    &_link_card{
+        background-color: #0080ff !important;
+        border-radius: 15px !important;
+        width: 100%;
+        height: 200px;
+        padding: 15px;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &_icon{
+            width: 50px !important;
+            height: 50px !important;
+            fill: #fff !important;
+        }
+    }
 }
