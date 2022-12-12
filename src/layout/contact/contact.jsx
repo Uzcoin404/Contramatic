@@ -1,4 +1,6 @@
 import React, { useContext, useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
+import { useNavigate } from "react-router-dom";
 import {
     Box,
     Container,
@@ -6,7 +8,6 @@ import {
     FormControl,
     Typography,
 } from "@mui/material";
-import parse from "html-react-parser";
 import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../../components/get-started/getStartedBtn";
 import FormModal from "../../components/form-modal/formModal";
@@ -14,6 +15,7 @@ import { title } from "../styles";
 import "./contact.scss";
 
 export default function Contact() {
+    const navigator = useNavigate();
     const { data } = useContext(DataContext);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -54,11 +56,22 @@ export default function Contact() {
         e.preventDefault();
         if ((email != "" && theme != "", message != "")) {
             if (validateEmail(email)) {
-                setModal({
-                    open: true,
-                    isSuccess: true,
-                    message: data.contact_alert3,
-                });
+                const formData = new FormData();
+                formData.append('user_name', name);
+                formData.append('user_email', email);
+                formData.append('user_theme', theme);
+                formData.append('user_message', message);
+                emailjs.sendForm('service_cypf1tp', 'template_r1ppuyb', formData, '5VRAmi8XKMwmBkk79')
+                    .then((result) => {
+                        console.log(result.text);
+                        setModal({
+                            open: true,
+                            isSuccess: true,
+                            message: data.contact_alert3,
+                        });
+                    }, (error) => {
+                        console.log(error.text);
+                    });
                 setName("");
                 setEmail("");
                 setTheme("");
@@ -169,9 +182,9 @@ export default function Contact() {
                                     fontSize: 18,
                                 },
                                 "& .MuiOutlinedInput-root.Mui-focused fieldset":
-                                    {
-                                        borderColor: "#fff",
-                                    },
+                                {
+                                    borderColor: "#fff",
+                                },
                             }}
                             multiline
                             rows={6}

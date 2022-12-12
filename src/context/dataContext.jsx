@@ -31,7 +31,6 @@ function Provider({ children }) {
         }
         getData();
     }, [lang]);
-    console.log(data);
 
     if (loading) {
         return "";
