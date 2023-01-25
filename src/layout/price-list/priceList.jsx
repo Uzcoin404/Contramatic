@@ -43,10 +43,10 @@ export default function PriceList() {
                             perMove: 1,
                             perPage: 3,
                             start: 1,
-                            focus: 'center',
+                            focus: "center",
                             mediaQuery: "min",
                             breakpoints: {
-                                1000: { destroy: true },
+                                950: { destroy: true },
                                 900: { perPage: 2 },
                                 0: { perPage: 1 },
                             },
@@ -92,7 +92,10 @@ export default function PriceList() {
                                 <Button className="price_card_btn">
                                     Select
                                 </Button>
-                                <Typography align="center" sx={{ mt: 2 }}>
+                                <Typography
+                                    align="center"
+                                    sx={{ mt: 2, color: "#131515" }}
+                                >
                                     Revenue Share
                                 </Typography>
                             </Card>
@@ -116,7 +119,10 @@ export default function PriceList() {
                                 <Button className="price_card_btn">
                                     Select
                                 </Button>
-                                <Typography align="center" sx={{ mt: 2 }}>
+                                <Typography
+                                    align="center"
+                                    sx={{ mt: 2, color: "#131515" }}
+                                >
                                     Revenue Share
                                 </Typography>
                             </Card>

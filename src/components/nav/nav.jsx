@@ -126,7 +126,7 @@ export default function Nav(props) {
                                 color="inherit"
                                 aria-label="menu"
                                 sx={{
-                                    display: { xs: "flex", md: "none" },
+                                    display: { xs: "flex", lg: "none" },
                                     // mr: 2,
                                 }}
                                 onClick={handleDrawerToggle}
@@ -157,7 +157,7 @@ export default function Nav(props) {
                             sx={{
                                 flexGrow: 1,
                                 ml: 5,
-                                display: { xs: "none", md: "flex" },
+                                display: { xs: "none", lg: "flex" },
                                 columnGap: "24px",
                             }}
                         >
@@ -210,7 +210,7 @@ export default function Nav(props) {
                         keepMounted: true,
                     }}
                     sx={{
-                        display: { xs: "flex", md: "none" },
+                        display: { xs: "flex", lg: "none" },
                         "& .MuiDrawer-paper": {
                             backgroundColor: "#5e5e5e",
                             boxSizing: "border-box",

@@ -8,6 +8,8 @@
         padding: 30px 25px 25px;
         height: 620px;
         color: #131515;
+        box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25);
+        margin-bottom: 30px;
         &_price {
             text-align: right;
             font-weight: 700;
@@ -52,8 +54,11 @@
             rgba(166, 248, 181, 0) 96.53%
         );
         color: #fff;
+        .price_card_content * {
+            color: #fff;
+        }
         height: 680px;
-        .price_card_circle{
+        .price_card_circle {
             border-color: #fff;
         }
     }
@@ -64,6 +69,9 @@
             rgba(48, 58, 85, 0) 96.92%
         );
         color: #fff;
+        .price_card_content * {
+            color: #fff;
+        }
     }
     .splide__list {
         display: flex !important;
@@ -77,6 +85,8 @@
         text-transform: uppercase;
         text-align: center;
         margin-bottom: 12px;
+        letter-spacing: 1.5px;
+        font-weight: 400;
     }
     .price_card_circle {
         position: relative;
@@ -90,7 +100,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 4px solid #5DDFE3;
+        border: 4px solid #5ddfe3;
     }
     // .price_card_circle::before {
     //     position: absolute;
@@ -110,8 +120,10 @@
         box-shadow: 0px 11.5px 26.5px rgba(0, 0, 0, 0.25);
         font-family: "ChunkFive Ex" !important;
         font-size: 22px;
+        font-weight: 400;
         color: #131515 !important;
         margin-top: 20px;
+        letter-spacing: inherit;
     }
 
     @media (max-width: 900px) {
