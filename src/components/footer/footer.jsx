@@ -41,7 +41,7 @@ export default function Footer() {
     };
     async function sendData(e) {
         e.preventDefault();
-        if (email != '') {
+        if (email != "") {
             if (validateEmail(email)) {
                 await setDoc(doc(db, "subscribers", email), {
                     email: email,
@@ -126,7 +126,7 @@ export default function Footer() {
                                 dangerouslySetInnerHTML={{ __html: data.email }}
                             />
                         </a>
-                        <a
+                        {/* <a
                             href={
                                 "tel:" +
                                 parse(data.phone_number).props.children.replace(
@@ -155,7 +155,7 @@ export default function Footer() {
                                     __html: data.phone_number,
                                 }}
                             />
-                        </a>
+                        </a> */}
                     </Box>
                     <Box
                         className="social__media"

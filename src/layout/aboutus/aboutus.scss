@@ -15,6 +15,9 @@
         right: -400px;
     }
 }
+.section__title, .section__subtitle2 {
+    font-family: "ChunkFive Ex" !important;
+}
 .section {
     @media (max-width: 1024px) {
         &__title {
