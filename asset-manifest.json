@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.fbed789b.css",
-    "main.js": "/static/js/main.df544be2.js",
+    "main.css": "/static/css/main.85d60c82.css",
+    "main.js": "/static/js/main.9005c51a.js",
     "static/media/animation-mobile.gif": "/static/media/animation-mobile.0c94dc13325ce133be0b.gif",
     "static/media/animation-web.gif": "/static/media/animation-web.3ed446c273ae562805a5.gif",
     "static/media/white-label-bubble2.png": "/static/media/white-label-bubble2.caf010aad876f1daf2fe.png",
@@ -22,12 +22,10 @@
     "static/media/email.svg": "/static/media/email.6812c2f4fccdee2cc193dac412623eee.svg",
     "index.html": "/index.html",
     "static/media/right-arrow.svg": "/static/media/right-arrow.901d80c0bed0af9f67dad8200b6e5bf3.svg",
-    "static/media/phone.svg": "/static/media/phone.ffe33c0dcacddabf07f5438120ee113a.svg",
-    "main.fbed789b.css.map": "/static/css/main.fbed789b.css.map",
-    "main.df544be2.js.map": "/static/js/main.df544be2.js.map"
+    "static/media/phone.svg": "/static/media/phone.ffe33c0dcacddabf07f5438120ee113a.svg"
   },
   "entrypoints": [
-    "static/css/main.fbed789b.css",
-    "static/js/main.df544be2.js"
+    "static/css/main.85d60c82.css",
+    "static/js/main.9005c51a.js"
   ]
 }
