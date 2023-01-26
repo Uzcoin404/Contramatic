@@ -2,11 +2,12 @@
     .price_card {
         display: flex;
         flex-direction: column;
-        max-width: 275px;
+        max-width: 270px;
+        width: 100%;
         border-radius: 30px;
         box-shadow: none;
         padding: 30px 25px 25px;
-        height: 620px;
+        height: 600px;
         color: #131515;
         box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25);
         margin-bottom: 30px;
@@ -45,9 +46,10 @@
                 font-weight: 700;
             }
         }
+        flex-grow: 1;
     }
     .splide__slide.is-active .price_card {
-        height: 680px;
+        height: 640px;
     }
     .splide__slide:nth-child(odd) .price_card {
         background: linear-gradient(
@@ -85,11 +87,13 @@
     }
     .splide__list {
         display: flex !important;
-        justify-content: center;
         align-items: center;
         gap: 22px;
-        height: 700px;
+        height: 650px;
         margin-top: 30px !important;
+    }
+    .splide:not(.is-overflow) .splide__list {
+        justify-content: center;
     }
     .price_card_title {
         font-size: 30px;
@@ -101,11 +105,8 @@
         font-weight: 400;
     }
     .price_card_circle {
-        position: relative;
-        max-width: 230px;
-        max-height: 230px;
-        width: 100%;
-        height: 100%;
+        width: 220px;
+        height: 220px;
         border-radius: 50%;
         aspect-ratio: 1 / 1;
         margin: 0 auto;
@@ -114,17 +115,6 @@
         align-items: center;
         border: 4px solid #5ddfe3;
     }
-    // .price_card_circle::before {
-    //     position: absolute;
-    //     content: "";
-    //     border-radius: 50%;
-    //     background-image: linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%);
-    //     top: -4px;
-    //     left: -4px;
-    //     bottom: -4px;
-    //     right: -4px;
-    //     z-index: -1;
-    // }
     .price_card_btn {
         width: 100%;
         height: 56px;
@@ -139,10 +129,13 @@
         text-transform: capitalize;
     }
 
-    @media (max-width: 900px) {
-        .splide__list {
-            justify-content: start;
+    @media (min-width: 901px) {
+        .splide__slide:nth-child(even) .price_card {
+            height: 640px;
         }
+    }
+    @media (max-width: 900px) {
+        margin-top: 40px;
     }
     @media (max-width: 400px) {
         .splide__list {

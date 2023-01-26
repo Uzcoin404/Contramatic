@@ -9,15 +9,16 @@ import "./priceList.scss";
 export default function PriceList() {
     const { data } = useContext(DataContext);
 
+    // console.log(document.querySelector(".splide__list").style.transform);
     return (
         <Box className="pricelist" id="pricelist">
-            <Container>
+            <Container sx={{ p: { xs: 0 } }}>
                 <Typography
                     variant="h2"
                     className="section__title"
                     align="center"
                     style={title}
-                    sx={{ marginBottom: "4px !important" }}
+                    sx={{ marginBottom: "4px !important", px: 2 }}
                     // dangerouslySetInnerHTML={{
                     //     __html: data.pricelist_title,
                     // }}
@@ -45,23 +46,23 @@ export default function PriceList() {
                         aria-label="My Favorite Images"
                         options={{
                             autoWidth: true,
-                            fixedWidth: true,
                             // gap: "30px",
                             perMove: 1,
                             perPage: 3,
                             start: 1,
                             focus: "center",
+                            updateOnMove: true,
                             mediaQuery: "min",
                             breakpoints: {
                                 950: { destroy: true },
                                 900: { perPage: 2 },
-                                0: { perPage: 1 },
+                                0: { perPage: 1, rewindSpeed: 1000 },
                             },
                             pagination: false,
                         }}
                     >
                         <SplideSlide>
-                            <Card className="price_card">
+                            <Card className="price_card" sx={{ ml: { xs: 2 } }}>
                                 <h3 className="price_card_title">Basic</h3>
                                 <div className="price_card_circle">
                                     <Typography className="price_card_price">
@@ -98,7 +99,10 @@ export default function PriceList() {
                                         </span>
                                     </Typography>
                                 </div>
-                                <div className="price_card_content">
+                                <div
+                                    className="price_card_content"
+                                    style={{ flexGrow: 0 }}
+                                >
                                     <p>Individual Design</p>
                                     <p style={{ marginTop: "10px" }}>
                                         Inside Our Frame sections, we create
@@ -120,7 +124,7 @@ export default function PriceList() {
                             </Card>
                         </SplideSlide>
                         <SplideSlide>
-                            <Card className="price_card">
+                            <Card className="price_card" sx={{ mr: { xs: 2 } }}>
                                 <h3 className="price_card_title">Premium</h3>
                                 <div className="price_card_circle">
                                     <Typography className="price_card_price">
