@@ -18,9 +18,13 @@ export default function PriceList() {
                     align="center"
                     style={title}
                     sx={{ marginBottom: "4px !important" }}
+                    // dangerouslySetInnerHTML={{
+                    //     __html: data.pricelist_title,
+                    // }}
                 >
                     Price List for White Label
                 </Typography>
+
                 <Typography
                     variant="subtitle1"
                     className="section__subtitle2"
@@ -30,15 +34,18 @@ export default function PriceList() {
                     align="center"
                     lineHeight="28px"
                     color="#131515"
-                    sx={{ mb: 5 }}
+                    // dangerouslySetInnerHTML={{
+                    //     __html: data.pricelist_subtitle,
+                    // }}
                 >
-                    FROM €0,00 in 24 H.
+                    FROM €0,00 IN 24 H.
                 </Typography>
                 <div className="pricelist__content">
                     <Splide
                         aria-label="My Favorite Images"
                         options={{
                             autoWidth: true,
+                            fixedWidth: true,
                             // gap: "30px",
                             perMove: 1,
                             perPage: 3,
@@ -55,17 +62,23 @@ export default function PriceList() {
                     >
                         <SplideSlide>
                             <Card className="price_card">
-                                <h3 className="price_card_title">FREE</h3>
+                                <h3 className="price_card_title">Basic</h3>
                                 <div className="price_card_circle">
                                     <Typography className="price_card_price">
-                                        Setup fee <br /> <span>€0,00</span>
+                                        <p style={{ marginBottom: 8 }}>
+                                            Setup fee
+                                        </p>
+                                        <span className="price">€0,00</span>
                                     </Typography>
                                 </div>
                                 <div className="price_card_content">
                                     <p>Our Design</p>
                                     <p>5 color versions included</p>
                                 </div>
-                                <Button className="price_card_btn">
+                                <Button
+                                    className="price_card_btn"
+                                    href="mailto:info@contramatic.com?subject=0 EUR"
+                                >
                                     Select
                                 </Button>
                                 <Typography align="center" sx={{ mt: 2 }}>
@@ -78,18 +91,24 @@ export default function PriceList() {
                                 <h3 className="price_card_title">STANDARD</h3>
                                 <div className="price_card_circle">
                                     <Typography className="price_card_price">
-                                        Setup fee <br /> <span>€5,000</span>
+                                        <p>Setup fee</p>
+                                        <span className="price">
+                                            €5,000
+                                            <sup className="asterisk">*</sup>
+                                        </span>
                                     </Typography>
                                 </div>
                                 <div className="price_card_content">
                                     <p>Individual Design</p>
                                     <p style={{ marginTop: "10px" }}>
-                                        Amount remains with us as a credit and
-                                        will be credited from the monthly
-                                        revenue share
+                                        Inside Our Frame sections, we create
+                                        Your own design customized by your needs
                                     </p>
                                 </div>
-                                <Button className="price_card_btn">
+                                <Button
+                                    className="price_card_btn"
+                                    href="mailto:info@contramatic.com?subject=5.000 EUR"
+                                >
                                     Select
                                 </Button>
                                 <Typography
@@ -105,7 +124,11 @@ export default function PriceList() {
                                 <h3 className="price_card_title">Premium</h3>
                                 <div className="price_card_circle">
                                     <Typography className="price_card_price">
-                                        Setup fee <br /> <span>€10,000</span>
+                                        <p>Setup fee</p>
+                                        <span className="price">
+                                            €10,000
+                                            <sup className="asterisk">*</sup>
+                                        </span>
                                     </Typography>
                                 </div>
                                 <div className="price_card_content">
@@ -116,7 +139,10 @@ export default function PriceList() {
                                     <p>Provider Integration,</p>
                                     <p>Licence Integration</p>
                                 </div>
-                                <Button className="price_card_btn">
+                                <Button
+                                    className="price_card_btn"
+                                    href="mailto:info@contramatic.com?subject=10.000 EUR"
+                                >
                                     Select
                                 </Button>
                                 <Typography
@@ -128,6 +154,18 @@ export default function PriceList() {
                             </Card>
                         </SplideSlide>
                     </Splide>
+                    <Typography
+                        variant="body1"
+                        align="center"
+                        color="#fff"
+                        fontFamily="Open Sans"
+                        // dangerouslySetInnerHTML={{
+                        //     __html: data.pricelist_caution_text,
+                        // }}
+                    >
+                        * Amount remains as a credit and will be credited from
+                        the monthly revenue share
+                    </Typography>
                 </div>
             </Container>
         </Box>

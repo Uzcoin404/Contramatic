@@ -10,16 +10,24 @@
         color: #131515;
         box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25);
         margin-bottom: 30px;
+        transition: all 0.3s;
         &_price {
-            text-align: right;
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 36px;
-            span {
+            p {
+                text-align: right;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 36px;
+                font-family: "Open Sans";
+                line-height: 18px;
+            }
+            .price {
                 font-size: 38px;
                 line-height: 28px;
                 font-family: "ChunkFive Ex" !important;
                 text-align: center;
+            }
+            .asterisk {
+                font-size: 24px;
             }
         }
         &_content {
@@ -37,6 +45,9 @@
                 font-weight: 700;
             }
         }
+    }
+    .splide__slide.is-active .price_card {
+        height: 680px;
     }
     .splide__slide:nth-child(odd) .price_card {
         background: linear-gradient(
@@ -57,7 +68,6 @@
         .price_card_content * {
             color: #fff;
         }
-        height: 680px;
         .price_card_circle {
             border-color: #fff;
         }
@@ -78,6 +88,8 @@
         justify-content: center;
         align-items: center;
         gap: 22px;
+        height: 700px;
+        margin-top: 30px !important;
     }
     .price_card_title {
         font-size: 30px;
@@ -119,16 +131,22 @@
         background-color: #fff !important;
         box-shadow: 0px 11.5px 26.5px rgba(0, 0, 0, 0.25);
         font-family: "ChunkFive Ex" !important;
-        font-size: 22px;
+        font-size: 25px;
         font-weight: 400;
         color: #131515 !important;
         margin-top: 20px;
         letter-spacing: inherit;
+        text-transform: capitalize;
     }
 
     @media (max-width: 900px) {
         .splide__list {
             justify-content: start;
+        }
+    }
+    @media (max-width: 400px) {
+        .splide__list {
+            transform: translateX(-260px);
         }
     }
 }

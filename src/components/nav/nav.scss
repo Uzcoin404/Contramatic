@@ -82,6 +82,11 @@
     font-weight: 700;
     font-family: sans-serif;
 }
+@media (max-width: 1200px) {
+    .nav .MuiToolbar-root {
+        justify-content: space-between;
+    }
+}
 @media (max-width: 1100px) {
     .nav {
         .logo__text {
@@ -92,9 +97,6 @@
         }
         &__list {
             column-gap: 16px !important;
-        }
-        .MuiToolbar-root {
-            justify-content: space-between;
         }
     }
 }
@@ -124,19 +126,19 @@
             font-size: 18px !important;
             margin-left: -30px;
         }
-        .getStarted__btn p{
+        .getStarted__btn p {
             font-size: 15px;
         }
-        .getStarted__btn{
+        .getStarted__btn {
             padding: 5px 8px !important;
         }
-        #language-switcher{
+        #language-switcher {
             width: 45px;
             height: 45px;
         }
     }
 }
-@media (max-width: 355px) {
+@media (max-width: 400px) {
     .logo__text {
         display: none;
     }
