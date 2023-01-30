@@ -21,30 +21,22 @@
                 font-family: "Open Sans";
                 line-height: 18px;
             }
-            .price {
-                font-size: 38px;
-                line-height: 28px;
-                font-family: "ChunkFive Ex" !important;
-                text-align: center;
-            }
+            // .price {
+            //     font-size: 38px;
+            //     line-height: 28px;
+            //     font-family: "ChunkFive Ex" !important;
+            //     text-align: center;
+            // }
             .asterisk {
                 font-size: 24px;
             }
         }
         &_content {
             flex-grow: 1;
+            margin-top: 20px;
         }
         &_content * {
-            text-align: center;
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 25px;
             font-family: "Open Sans";
-            color: #131515;
-            &:nth-child(1) {
-                margin-top: 20px;
-                font-weight: 700;
-            }
         }
         flex-grow: 1;
     }

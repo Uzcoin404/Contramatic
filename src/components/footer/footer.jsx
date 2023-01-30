@@ -7,7 +7,6 @@ import parse from "html-react-parser";
 import FormModal from "../form-modal/formModal";
 
 import emailIcon from "../../assets/img/icons/email.svg";
-import phoneIcon from "../../assets/img/icons/phone.svg";
 import "./footer.scss";
 
 export default function Footer() {

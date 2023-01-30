@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 import {
     Box,
@@ -11,8 +11,10 @@ import {
 import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../../components/get-started/getStartedBtn";
 import FormModal from "../../components/form-modal/formModal";
+import parse from "html-react-parser";
 import { title } from "../styles";
 import "./contact.scss";
+import contantMap from "../../assets/img/map.png";
 
 export default function Contact() {
     const navigator = useNavigate();
@@ -57,21 +59,30 @@ export default function Contact() {
         if ((email != "" && theme != "", message != "")) {
             if (validateEmail(email)) {
                 const formData = new FormData();
-                formData.append('user_name', name);
-                formData.append('user_email', email);
-                formData.append('user_theme', theme);
-                formData.append('user_message', message);
-                emailjs.sendForm('service_cypf1tp', 'template_r1ppuyb', formData, '5VRAmi8XKMwmBkk79')
-                    .then((result) => {
-                        console.log(result.text);
-                        setModal({
-                            open: true,
-                            isSuccess: true,
-                            message: data.contact_alert3,
-                        });
-                    }, (error) => {
-                        console.log(error.text);
-                    });
+                formData.append("user_name", name);
+                formData.append("user_email", email);
+                formData.append("user_theme", theme);
+                formData.append("user_message", message);
+                emailjs
+                    .sendForm(
+                        "service_cypf1tp",
+                        "template_r1ppuyb",
+                        formData,
+                        "5VRAmi8XKMwmBkk79"
+                    )
+                    .then(
+                        (result) => {
+                            console.log(result.text);
+                            setModal({
+                                open: true,
+                                isSuccess: true,
+                                message: data.contact_alert3,
+                            });
+                        },
+                        (error) => {
+                            console.log(error.text);
+                        }
+                    );
                 setName("");
                 setEmail("");
                 setTheme("");
@@ -80,7 +91,7 @@ export default function Contact() {
                 setModal({
                     open: true,
                     isSuccess: false,
-                    message: data.contact_alert2
+                    message: data.contact_alert2,
                 });
             }
         } else {
@@ -119,6 +130,34 @@ export default function Contact() {
                     dangerouslySetInnerHTML={{ __html: data.contact_title }}
                 />
                 <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        mb: 4,
+                    }}
+                    className="contact_map"
+                >
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexWrap: "wrap",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <img
+                            src={contantMap}
+                            alt=""
+                            className="contact_map_img"
+                        />
+                        <Box className="contact_map_text">
+                            {data.contact_map_text
+                                ? parse(data.contact_map_text)
+                                : ""}
+                        </Box>
+                    </Box>
+                </Box>
+                <Box
                     component="form"
                     action="#"
                     sx={{ margin: "0 auto", width: "max-content" }}
@@ -127,7 +166,10 @@ export default function Contact() {
                     <Box>
                         <FormControl>
                             <TextField
-                                label={data.contact_input1?.replace(/<[^>]+>/g, '')}
+                                label={data.contact_input1?.replace(
+                                    /<[^>]+>/g,
+                                    ""
+                                )}
                                 variant="outlined"
                                 className="contact__input"
                                 size="large"
@@ -139,7 +181,10 @@ export default function Contact() {
                         </FormControl>
                         <FormControl>
                             <TextField
-                                label={data.contact_input2?.replace(/<[^>]+>/g, '')}
+                                label={data.contact_input2?.replace(
+                                    /<[^>]+>/g,
+                                    ""
+                                )}
                                 variant="outlined"
                                 className="contact__input"
                                 size="large"
@@ -152,7 +197,7 @@ export default function Contact() {
                     </Box>
                     <FormControl fullWidth>
                         <TextField
-                            label={data.contact_input3?.replace(/<[^>]+>/g, '')}
+                            label={data.contact_input3?.replace(/<[^>]+>/g, "")}
                             variant="outlined"
                             className="contact__input"
                             size="large"
@@ -164,7 +209,7 @@ export default function Contact() {
                     </FormControl>
                     <FormControl fullWidth>
                         <TextField
-                            label={data.contact_input4?.replace(/<[^>]+>/g, '')}
+                            label={data.contact_input4?.replace(/<[^>]+>/g, "")}
                             variant="outlined"
                             className="contact__input"
                             size="large"
@@ -182,9 +227,9 @@ export default function Contact() {
                                     fontSize: 18,
                                 },
                                 "& .MuiOutlinedInput-root.Mui-focused fieldset":
-                                {
-                                    borderColor: "#fff",
-                                },
+                                    {
+                                        borderColor: "#fff",
+                                    },
                             }}
                             multiline
                             rows={6}

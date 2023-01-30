@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Box, Grid, Typography, Button, Container, Card } from "@mui/material";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { DataContext } from "../../context/dataContext";
+import parse from "html-react-parser";
 import { title, text } from "../styles";
 
 import "./priceList.scss";
@@ -9,7 +10,7 @@ import "./priceList.scss";
 export default function PriceList() {
     const { data } = useContext(DataContext);
 
-    // console.log(document.querySelector(".splide__list").style.transform);
+    console.log(data.pricelist_price1);
     return (
         <Box className="pricelist" id="pricelist">
             <Container sx={{ p: { xs: 0 } }}>
@@ -19,12 +20,10 @@ export default function PriceList() {
                     align="center"
                     style={title}
                     sx={{ marginBottom: "4px !important", px: 2 }}
-                    // dangerouslySetInnerHTML={{
-                    //     __html: data.pricelist_title,
-                    // }}
-                >
-                    Price List for White Label
-                </Typography>
+                    dangerouslySetInnerHTML={{
+                        __html: data.pricelist_title,
+                    }}
+                />
 
                 <Typography
                     variant="subtitle1"
@@ -35,12 +34,10 @@ export default function PriceList() {
                     align="center"
                     lineHeight="28px"
                     color="#131515"
-                    // dangerouslySetInnerHTML={{
-                    //     __html: data.pricelist_subtitle,
-                    // }}
-                >
-                    FROM €0,00 IN 24 H.
-                </Typography>
+                    dangerouslySetInnerHTML={{
+                        __html: data.pricelist_subtitle,
+                    }}
+                />
                 <div className="pricelist__content">
                     <Splide
                         aria-label="My Favorite Images"
@@ -63,98 +60,98 @@ export default function PriceList() {
                     >
                         <SplideSlide>
                             <Card className="price_card" sx={{ ml: { xs: 2 } }}>
-                                <h3 className="price_card_title">Basic</h3>
+                                <h3
+                                    className="price_card_title"
+                                    dangerouslySetInnerHTML={{
+                                        __html: data.pricelist_card_title1,
+                                    }}
+                                />
                                 <div className="price_card_circle">
                                     <Typography className="price_card_price">
-                                        <p style={{ marginBottom: 8 }}>
-                                            Setup fee
-                                        </p>
-                                        <span className="price">€0,00</span>
+                                        {data.pricelist_price1 ? parse(data.pricelist_price1) : ''}
                                     </Typography>
                                 </div>
                                 <div className="price_card_content">
-                                    <p>Our Design</p>
-                                    <p>5 color versions included</p>
+                                    {data.pricelist_card_text1 ? parse(data.pricelist_card_text1) : ''}
                                 </div>
                                 <Button
                                     className="price_card_btn"
                                     href="mailto:info@contramatic.com?subject=0 EUR"
                                 >
-                                    Select
+                                    {data.pricelist_card_select ? parse(data.pricelist_card_select) : ''}
                                 </Button>
-                                <Typography align="center" sx={{ mt: 2 }}>
-                                    Revenue Share
-                                </Typography>
+                                <Typography
+                                    align="center"
+                                    sx={{ mt: 2 }}
+                                    dangerouslySetInnerHTML={{
+                                        __html: data.pricelist_card_revenue,
+                                    }}
+                                />
                             </Card>
                         </SplideSlide>
                         <SplideSlide>
                             <Card className="price_card">
-                                <h3 className="price_card_title">STANDARD</h3>
+                                <h3
+                                    className="price_card_title"
+                                    dangerouslySetInnerHTML={{
+                                        __html: data.pricelist_card_title2,
+                                    }}
+                                />
                                 <div className="price_card_circle">
                                     <Typography className="price_card_price">
-                                        <p>Setup fee</p>
-                                        <span className="price">
-                                            €5,000
-                                            <sup className="asterisk">*</sup>
-                                        </span>
+                                        {data.pricelist_price2 ? parse(data.pricelist_price2) : ''}
                                     </Typography>
                                 </div>
                                 <div
                                     className="price_card_content"
                                     style={{ flexGrow: 0 }}
                                 >
-                                    <p>Individual Design</p>
-                                    <p style={{ marginTop: "10px" }}>
-                                        Inside Our Frame sections, we create
-                                        Your own design customized by your needs
-                                    </p>
+                                    {data.pricelist_card_text2 ? parse(data.pricelist_card_text2) : ''}
                                 </div>
                                 <Button
                                     className="price_card_btn"
                                     href="mailto:info@contramatic.com?subject=5.000 EUR"
                                 >
-                                    Select
+                                    {data.pricelist_card_select ? parse(data.pricelist_card_select) : ''}
                                 </Button>
                                 <Typography
                                     align="center"
                                     sx={{ mt: 2, color: "#131515" }}
-                                >
-                                    Revenue Share
-                                </Typography>
+                                    dangerouslySetInnerHTML={{
+                                        __html: data.pricelist_card_revenue,
+                                    }}
+                                />
                             </Card>
                         </SplideSlide>
                         <SplideSlide>
                             <Card className="price_card" sx={{ mr: { xs: 2 } }}>
-                                <h3 className="price_card_title">Premium</h3>
+                                <h3
+                                    className="price_card_title"
+                                    dangerouslySetInnerHTML={{
+                                        __html: data.pricelist_card_title3,
+                                    }}
+                                />
                                 <div className="price_card_circle">
                                     <Typography className="price_card_price">
-                                        <p>Setup fee</p>
-                                        <span className="price">
-                                            €10,000
-                                            <sup className="asterisk">*</sup>
-                                        </span>
+                                        {data.pricelist_price3 ? parse(data.pricelist_price3) : ''}
                                     </Typography>
                                 </div>
                                 <div className="price_card_content">
-                                    <p>Complete Solution</p>
-                                    <p style={{ marginTop: "10px" }}>
-                                        Payment Options
-                                    </p>
-                                    <p>Provider Integration,</p>
-                                    <p>Licence Integration</p>
+                                    {data.pricelist_card_text3 ? parse(data.pricelist_card_text3) : ''}
                                 </div>
                                 <Button
                                     className="price_card_btn"
                                     href="mailto:info@contramatic.com?subject=10.000 EUR"
                                 >
-                                    Select
+                                    {data.pricelist_card_select ? parse(data.pricelist_card_select) : ''}
                                 </Button>
                                 <Typography
                                     align="center"
                                     sx={{ mt: 2, color: "#131515" }}
-                                >
-                                    Revenue Share
-                                </Typography>
+                                    dangerouslySetInnerHTML={{
+                                        __html: data.pricelist_card_revenue,
+                                    }}
+                                />
                             </Card>
                         </SplideSlide>
                     </Splide>
@@ -163,13 +160,10 @@ export default function PriceList() {
                         align="center"
                         color="#fff"
                         fontFamily="Open Sans"
-                        // dangerouslySetInnerHTML={{
-                        //     __html: data.pricelist_caution_text,
-                        // }}
-                    >
-                        * Amount remains as a credit and will be credited from
-                        the monthly revenue share
-                    </Typography>
+                        dangerouslySetInnerHTML={{
+                            __html: data.pricelist_caution_text,
+                        }}
+                    />
                 </div>
             </Container>
         </Box>

@@ -9,12 +9,31 @@ input:-webkit-autofill:active {
     input:-webkit-autofill {
         -webkit-text-fill-color: #fff !important;
     }
+    &_map_text {
+        margin-left: 30px;
+        font-size: 18px;
+        line-height: 27px;
+        p {
+            margin-bottom: 20px;
+        }
+    }
     @media (max-width: 900px) {
         &__input {
             min-width: auto !important;
         }
         .getStarted__btn {
             margin: 0 auto;
+        }
+        &_map{
+            width: auto;
+        }
+        &_map_text {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-left: 0;
+            margin-top: 30px;
+            gap: 0 30px;
         }
     }
     @media (max-width: 660px) {
@@ -23,6 +42,14 @@ input:-webkit-autofill:active {
         }
         form {
             width: 95%;
+        }
+        &_map_text{
+            justify-content: start;
+            gap: 0 20px;
+        }
+        &_map_img{
+            max-width: 100%;
+            width: auto;
         }
     }
 }

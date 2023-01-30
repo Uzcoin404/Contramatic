@@ -127,7 +127,6 @@ function Aside({ languages }) {
     const ExpandableMenuItem = ({ config, divider }) => {
         const [open, setOpen] = useState(checkPage());
         function checkPage() {
-            console.log(window.location.pathname);
             if (config.hasOwnProperty("items")) {
                 let items = config.items;
                 for (let i = 0; i < items.length; i++) {

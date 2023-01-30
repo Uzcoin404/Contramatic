@@ -130,29 +130,6 @@ export default function EditPost() {
                             });
                         }
                     },
-                    templates: [
-                        {
-                            title: "New Table",
-                            description: "creates a new table",
-                            content:
-                                '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>',
-                        },
-                        {
-                            title: "Starting my story",
-                            description: "A cure for writers block",
-                            content: "Once upon a time...",
-                        },
-                        {
-                            title: "New list with dates",
-                            description: "New List with dates",
-                            content:
-                                '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>',
-                        },
-                    ],
-                    template_cdate_format:
-                        "[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]",
-                    template_mdate_format:
-                        "[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]",
                     image_caption: true,
                     quickbars_selection_toolbar:
                         "bold italic | quicklink h2 h3 blockquote quickimage quicktable",
@@ -160,7 +137,7 @@ export default function EditPost() {
                     toolbar_mode: "sliding",
                     contextmenu: "link image imagetools table",
                     content_style:
-                        "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                        "body { font-family:ChunkFive Ex,sans-serif; font-size:14px }",
                 }}
             />
             <Button variant="contained" sx={{ mt: 3 }} onClick={log}>

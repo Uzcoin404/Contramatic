@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, NavLink as Link } from "react-router-dom";
 import { db } from "../../../components/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import {
     Table,
     TableBody,
@@ -28,6 +28,15 @@ export default function Posts() {
 
             if (docSnap.exists()) {
                 setPosts(Object.values(docSnap.data()));
+            }
+            // const washingtonRef = doc(db, "data", "it");
+
+            // // Set the "capital" field of the city 'DC'
+            // await updateDoc(washingtonRef, {
+            //     capital: true,
+            // });
+            for (let i = 0; i < docSnap.data().length; i++) {
+            console.log(docSnap.data()[i]);
             }
         }
         getData();
@@ -90,9 +99,6 @@ export default function Posts() {
                                                 }}
                                             />
                                             <TableCell align="center">
-                                                {row.keyword}
-                                            </TableCell>
-                                            <TableCell align="center">
                                                 {row?.position}
                                             </TableCell>
                                             <TableCell align="right">
@@ -126,13 +132,7 @@ export default function Posts() {
 }
 const columns = [
     { id: "id", label: "#" },
-    { id: "title", label: "Title", minWidth: 200 },
-    {
-        id: "keyword",
-        label: "Keyword",
-        minWidth: 100,
-        align: "right",
-    },
+    { id: "text", label: "Text", minWidth: 200 },
     {
         id: "position",
         label: "Position",
