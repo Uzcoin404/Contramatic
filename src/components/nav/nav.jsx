@@ -24,6 +24,7 @@ import { LangContext } from "../../context/langContext";
 import { DataContext } from "../../context/dataContext";
 import GetStartedBtn from "../get-started/getStartedBtn";
 import "./nav.scss";
+import logo from "../../assets/img/icons/contramatic.png";
 
 export default function Nav(props) {
     const { lang, setLang } = useContext(LangContext);
@@ -60,20 +61,11 @@ export default function Nav(props) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-            <Typography
-                variant="h4"
-                fontSize={26}
-                fontWeight={400}
-                color="#fff"
-                className="logo__text"
-                sx={{
-                    flexGrow: 1,
-                    my: 2,
-                    "& span": {
-                        color: "#BEBEBE",
-                    },
-                }}
-                dangerouslySetInnerHTML={{ __html: data.logo_text }}
+            <img
+                src={logo}
+                alt=""
+                className="nav__logo"
+                style={{ margin: "20px 0" }}
             />
             <Divider />
             <List>
@@ -118,7 +110,8 @@ export default function Nav(props) {
                             sx={{
                                 display: "flex",
                                 alignItems: "center",
-                                columnGap: "30px",
+                                columnGap: { sm: "30px", xs: 0 },
+                                mr: { xs: 2 },
                             }}
                         >
                             <IconButton
@@ -134,22 +127,7 @@ export default function Nav(props) {
                                 <MenuIcon fontSize="large" />
                             </IconButton>
                             <Link to="/">
-                                <Typography
-                                    variant="h4"
-                                    fontSize={26}
-                                    fontWeight={400}
-                                    color="#fff"
-                                    className="logo__text"
-                                    sx={{
-                                        flexGrow: 1,
-                                        "& span": {
-                                            color: "#BEBEBE",
-                                        },
-                                    }}
-                                    dangerouslySetInnerHTML={{
-                                        __html: data.logo_text,
-                                    }}
-                                />
+                                <img src={logo} alt="" className="nav__logo" />
                             </Link>
                         </Box>
                         <Box
