@@ -20,7 +20,7 @@ export default function Home() {
             <Cards />
             <WhiteLabel />
             <PriceList />
-            <Projects />
+            {/* <Projects /> */}
             <Contact />
             <Footer />
         </div>
