@@ -20,7 +20,6 @@ export default function Posts() {
     const { langId } = useParams();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(25);
-
     useEffect(() => {
         async function getData() {
             const docRef = doc(db, "data", langId);
@@ -29,15 +28,10 @@ export default function Posts() {
             if (docSnap.exists()) {
                 setPosts(Object.values(docSnap.data()));
             }
-            // const washingtonRef = doc(db, "data", "it");
-
-            // // Set the "capital" field of the city 'DC'
-            // await updateDoc(washingtonRef, {
-            //     capital: true,
-            // });
-            for (let i = 0; i < docSnap.data().length; i++) {
-            console.log(docSnap.data()[i]);
-            }
+            // for (let i = 56; i < posts.length; i++) {
+            //     const washingtonRef = doc(db, "data", "tr");
+            //     await updateDoc(washingtonRef, { [i]: posts[i] });
+            // }
         }
         getData();
     }, [langId]);
